@@ -1,0 +1,70 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}Instructor Insights{% endblock %}
+{% block page_title %}Intelligent insights{% endblock %}
+{% block content %}
+<section class="grid gap-6 lg:grid-cols-4">
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Active cohorts</p>
+        <p class="mt-4 text-4xl font-bold text-slate-900">{{ active_cohorts.count }}</p>
+    </div>
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Active students</p>
+        <p class="mt-4 text-4xl font-bold text-sky-700">{{ active_students }}</p>
+    </div>
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Pending reviews</p>
+        <p class="mt-4 text-4xl font-bold text-amber-600">{{ pending_reviews }}</p>
+    </div>
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Open attendance</p>
+        <p class="mt-4 text-4xl font-bold text-slate-900">{{ open_attendance_count }}</p>
+    </div>
+</section>
+
+<section class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+    <div class="flex items-center justify-between gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-900">Action recommendations</h2>
+            <p class="mt-2 text-sm text-slate-600">What to do next across your cohorts.</p>
+        </div>
+    </div>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {% for item in recommendation_cards %}
+            <div class="rounded-3xl bg-slate-50 p-6">
+                <p class="text-sm text-slate-500">{{ item.label }}</p>
+                <p class="mt-3 text-2xl font-semibold text-slate-900">{{ item.value }}</p>
+                <p class="mt-2 text-sm text-slate-600">{{ item.hint }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+    <h2 class="text-2xl font-bold text-slate-900">Cohort pressure map</h2>
+    <p class="mt-2 text-sm text-slate-600">Which cohorts need your attention most right now.</p>
+    <div class="mt-8 grid gap-4 lg:grid-cols-3">
+        {% for cohort in cohort_pressure %}
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-sm text-slate-500">{{ cohort.name }}</p>
+                        <h3 class="mt-2 text-xl font-semibold text-slate-900">{{ cohort.school.name }}</h3>
+                    </div>
+                    <span class="rounded-full bg-slate-200 px-3 py-1 text-xs uppercase tracking-[0.14em] text-slate-700">Attention</span>
+                </div>
+                <div class="mt-6 grid gap-3">
+                    <div class="rounded-3xl bg-white p-4 border border-slate-200">
+                        <p class="text-sm text-slate-500">Pending reviews</p>
+                        <p class="mt-2 text-lg font-semibold text-slate-900">{{ cohort.pending_reviews }}</p>
+                    </div>
+                    <div class="rounded-3xl bg-white p-4 border border-slate-200">
+                        <p class="text-sm text-slate-500">Open attendance</p>
+                        <p class="mt-2 text-lg font-semibold text-slate-900">{{ cohort.active_attendance }}</p>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

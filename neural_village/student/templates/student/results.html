@@ -1,0 +1,461 @@
+{% extends 'student/base_student.html' %}
+
+{% block title %}Results — {{ welcome_name }}{% endblock %}
+
+{% block content %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f5f4f1;
+    --surface: #ffffff;
+    --surface-raised: #fdfcfa;
+    --border: #e8e6e1;
+    --border-soft: #f0ede8;
+    --text-primary: #1a1917;
+    --text-secondary: #6b6864;
+    --text-tertiary: #a8a5a0;
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #f0fdfa;
+    --teal-mid: #99f6e4;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --rose: #e11d48;
+    --rose-light: #fff1f2;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --green-mid: #86efac;
+    --sky: #0284c7;
+    --sky-light: #f0f9ff;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .pg-wrap {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 24px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--text-primary);
+    border-radius: var(--radius-xl);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: var(--teal); opacity: 0.12; pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; left: 40%; bottom: -50px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: var(--amber); opacity: 0.09; pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 32px; font-weight: 600; color: #fff;
+    letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px;
+  }
+  .hero-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 420px; }
+
+  /* Hero callout — shows pass rate prominently */
+  .hero-callout {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    min-width: 180px; flex-shrink: 0;
+    text-align: center;
+  }
+  .hero-callout-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.09em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+    margin-bottom: 8px;
+  }
+  .hero-callout-value {
+    font-size: 40px; font-weight: 700; color: #fff;
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .hero-callout-sub {
+    font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 6px;
+  }
+  /* Donut-style ring around pass rate */
+  .hero-ring {
+    position: relative; width: 80px; height: 80px; margin: 0 auto 10px;
+  }
+  .hero-ring svg { transform: rotate(-90deg); }
+  .hero-ring-track { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 5; }
+  .hero-ring-fill  { fill: none; stroke: var(--green-mid); stroke-width: 5; stroke-linecap: round;
+    transition: stroke-dashoffset 0.6s ease; }
+  .hero-ring-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 700; color: #fff;
+  }
+
+  /* ── Summary stat cards ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle coloured top strip */
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--strip-color, var(--teal));
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+  .stat-card.strip-green  { --strip-color: var(--green); }
+  .stat-card.strip-amber  { --strip-color: var(--amber); }
+  .stat-card.strip-rose   { --strip-color: var(--rose); }
+  .stat-card.strip-teal   { --strip-color: var(--teal); }
+  .stat-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--text-tertiary); margin-bottom: 10px;
+  }
+  .stat-value {
+    font-size: 32px; font-weight: 700; color: var(--text-primary);
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .stat-note { font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5; }
+
+  /* ── Card shell ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+  .card-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .icon-teal { background: var(--teal-light); color: var(--teal); }
+  .card-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+  .card-sub   { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* ── Table ── */
+  .table-scroll {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+  table { width: 100%; border-collapse: collapse; min-width: 700px; }
+  colgroup col:nth-child(1) { width: 20%; }
+  colgroup col:nth-child(2) { width: 26%; }
+  colgroup col:nth-child(3) { width: 18%; }
+  colgroup col:nth-child(4) { width: 16%; }
+  colgroup col:nth-child(5) { width: 20%; }
+  thead th {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--text-tertiary);
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    background: var(--bg); text-align: left; white-space: nowrap;
+  }
+  tbody td {
+    padding: 13px 16px; font-size: 13px; color: var(--text-primary);
+    border-bottom: 1px solid var(--border-soft); vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background 0.1s; }
+  tbody tr:hover td { background: #fafaf9; }
+
+  .quiz-name { font-weight: 600; white-space: nowrap; }
+  .module-code {
+    font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+    color: var(--teal); background: var(--teal-light);
+    padding: 2px 7px; border-radius: 5px; margin-right: 5px; display: inline-block;
+  }
+  .module-name { font-size: 13px; color: var(--text-secondary); }
+
+  /* Score cell: value + mini bar */
+  .score-cell { display: flex; flex-direction: column; gap: 5px; min-width: 80px; }
+  .score-val {
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    font-weight: 600; color: var(--text-primary);
+  }
+  .score-val.good  { color: var(--green); }
+  .score-val.warn  { color: var(--amber); }
+  .score-val.fail  { color: var(--rose);  }
+  .score-val.none  { color: var(--text-tertiary); font-weight: 400; }
+  .score-bar-track {
+    height: 4px; background: var(--border-soft); border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 4px;
+    background: var(--green);
+    transition: width 0.5s ease;
+  }
+  .score-bar-fill.warn { background: var(--amber); }
+  .score-bar-fill.fail { background: var(--rose);  }
+
+  /* Status badge */
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600;
+    padding: 5px 11px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
+    background: var(--bg); color: var(--text-secondary); border: 1px solid var(--border);
+  }
+  .status-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); flex-shrink: 0; }
+  .status-badge[data-status="passed"]      { background: var(--green-light); color: var(--green);  border-color: #bbf7d0; }
+  .status-badge[data-status="passed"] .dot { background: var(--green); }
+  .status-badge[data-status="failed"]      { background: var(--rose-light);  color: var(--rose);   border-color: #fecdd3; }
+  .status-badge[data-status="failed"] .dot { background: var(--rose); }
+  .status-badge[data-status="submitted"],
+  .status-badge[data-status="in progress"],
+  .status-badge[data-status="in_progress"] { background: var(--amber-light); color: var(--amber); border-color: #fde68a; }
+  .status-badge[data-status="submitted"] .dot,
+  .status-badge[data-status="in progress"] .dot,
+  .status-badge[data-status="in_progress"] .dot { background: var(--amber); }
+  .status-badge[data-status="not started"],
+  .status-badge[data-status="not_started"],
+  .status-badge[data-status="pending"]     { background: var(--sky-light);   color: var(--sky);   border-color: #bae6fd; }
+  .status-badge[data-status="not started"] .dot,
+  .status-badge[data-status="not_started"] .dot,
+  .status-badge[data-status="pending"] .dot { background: var(--sky); }
+  .status-badge[data-status="expired"]     { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+  .status-badge[data-status="expired"] .dot { background: #b91c1c; }
+
+  .notes-text {
+    font-size: 12px; color: var(--text-secondary);
+    max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  /* ── Empty state ── */
+  .empty-state {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-xl); padding: 72px 24px;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .empty-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--teal-light); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--teal) 6%, transparent);
+  }
+  .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+  .empty-state p  { font-size: 14px; color: var(--text-secondary); max-width: 380px; line-height: 1.6; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) { .summary-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } .hero-callout { min-width: unset; text-align: left; } .hero-ring { margin: 0 0 10px; } }
+  @media (max-width: 560px) { .pg-wrap { padding: 16px 14px 40px; gap: 16px; } .hero { padding: 24px 22px; } .hero h1 { font-size: 24px; } .summary-grid { grid-template-columns: 1fr 1fr; } .card { padding: 20px; } }
+  @media (max-width: 400px) { .summary-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="pg-wrap">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div style="position:relative;z-index:1;">
+      <p class="hero-eyebrow">Performance Dashboard</p>
+      <h1>Your Results</h1>
+      <p class="hero-desc">{{ results_message }}</p>
+    </div>
+
+    {% if results %}
+    <div class="hero-callout">
+      <div class="hero-ring">
+        <!-- Circumference of r=35 circle ≈ 220 -->
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle class="hero-ring-track" cx="40" cy="40" r="35"/>
+          <circle class="hero-ring-fill" cx="40" cy="40" r="35"
+            stroke-dasharray="220"
+            stroke-dashoffset="{{ pass_rate_raw|default:0|floatformat:0 }}"
+            id="hero-ring-fill"/>
+        </svg>
+        <div class="hero-ring-text" id="hero-ring-text">{{ pass_rate }}</div>
+      </div>
+      <div class="hero-callout-label">Pass rate</div>
+      <div class="hero-callout-sub">across {{ graded_count }} graded quiz{{ graded_count|pluralize:"zes" }}</div>
+    </div>
+    {% else %}
+    <div class="hero-callout">
+      <div class="hero-callout-label">Pass rate</div>
+      <div class="hero-callout-value">—</div>
+      <div class="hero-callout-sub">No graded quizzes yet</div>
+    </div>
+    {% endif %}
+  </section>
+
+  {% if results %}
+
+  <!-- ── Summary stats ── -->
+  <div class="summary-grid">
+    <div class="stat-card strip-teal">
+      <div class="stat-label">Total quizzes</div>
+      <div class="stat-value">{{ total_quizzes }}</div>
+      <p class="stat-note">All CBT sessions assigned to you</p>
+    </div>
+    <div class="stat-card strip-green">
+      <div class="stat-label">Graded</div>
+      <div class="stat-value">{{ graded_count }}</div>
+      <p class="stat-note">Quizzes with a final evaluation</p>
+    </div>
+    <div class="stat-card strip-amber">
+      <div class="stat-label">Avg score</div>
+      <div class="stat-value">{{ average_score }}</div>
+      <p class="stat-note">Across all graded quizzes</p>
+    </div>
+    <div class="stat-card strip-rose">
+      <div class="stat-label">Pass rate</div>
+      <div class="stat-value">{{ pass_rate }}</div>
+      <p class="stat-note">Percentage of graded quizzes passed</p>
+    </div>
+  </div>
+
+  <!-- ── Results table ── -->
+  <section class="card">
+    <div class="card-header">
+      <div class="card-icon icon-teal">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4"/><path d="M5 7h14M5 12h6m-6 5h14"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Quiz results</div>
+        <div class="card-sub">{{ results|length }} item{{ results|length|pluralize }}</div>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <colgroup><col><col><col><col><col></colgroup>
+        <thead>
+          <tr>
+            <th>Quiz</th>
+            <th>Module</th>
+            <th>Score</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in results %}
+          <tr>
+            <td><span class="quiz-name">{{ item.quiz_name }}</span></td>
+            <td>
+              <span class="module-code">{{ item.module_code }}</span>
+              <span class="module-name">{{ item.module_name }}</span>
+            </td>
+            <td>
+              {# Colour + mini bar based on score numeric value #}
+              {% if item.score_numeric is not None %}
+                {% if item.score_numeric >= item.passing_score %}
+                  <div class="score-cell">
+                    <span class="score-val good">{{ item.score }}</span>
+                    <div class="score-bar-track"><div class="score-bar-fill" style="width:{{ item.score_numeric }}%"></div></div>
+                  </div>
+                {% elif item.score_numeric >= 40 %}
+                  <div class="score-cell">
+                    <span class="score-val warn">{{ item.score }}</span>
+                    <div class="score-bar-track"><div class="score-bar-fill warn" style="width:{{ item.score_numeric }}%"></div></div>
+                  </div>
+                {% else %}
+                  <div class="score-cell">
+                    <span class="score-val fail">{{ item.score }}</span>
+                    <div class="score-bar-track"><div class="score-bar-fill fail" style="width:{{ item.score_numeric }}%"></div></div>
+                  </div>
+                {% endif %}
+              {% else %}
+                <span class="score-val none">—</span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="status-badge" data-status="{{ item.status_key|lower }}">
+                <span class="dot"></span>
+                {{ item.status }}
+              </span>
+            </td>
+            <td>
+              <span class="notes-text" title="{{ item.result_text }}">{{ item.result_text }}</span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {% else %}
+
+  <!-- ── Empty state ── -->
+  <div class="empty-state">
+    <div class="empty-icon">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+        <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+      </svg>
+    </div>
+    <h3>No results yet</h3>
+    <p>Once your quizzes are graded, your scores will appear here with a full performance summary.</p>
+  </div>
+
+  {% endif %}
+
+</div>
+
+<script>
+/* Animate the hero donut ring on load */
+(function () {
+  const fill = document.getElementById('hero-ring-fill');
+  if (!fill) return;
+  /* stroke-dashoffset: 220 = 0%, 0 = 100%
+     We store the raw pass rate (0–100) in the data attr via Django.
+     Convert: offset = 220 - (rate / 100 * 220) */
+  const rate = parseFloat(fill.getAttribute('stroke-dashoffset')) || 0;
+  const target = 220 - (rate / 100 * 220);
+  /* Start fully hidden, animate to target */
+  fill.style.strokeDashoffset = '220';
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      fill.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1)';
+      fill.style.strokeDashoffset = target;
+    });
+  });
+})();
+</script>
+
+{% endblock %}

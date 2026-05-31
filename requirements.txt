@@ -1,0 +1,46 @@
+# DBBSA Django Project Requirements
+# Python 3.13+
+
+# Core Framework
+Django==4.2.13
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+django-filter==24.1
+
+# Authentication & Security
+djangorestframework-simplejwt==5.5.1
+django-otp==1.2.0  # Two-factor authentication
+qrcode==7.4.2  # 2FA QR codes
+
+# Database
+psycopg2-binary==2.9.12  # PostgreSQL adapter (Python 3.13 compatible)
+
+# Caching & Task Queue
+redis==5.0.1
+celery==5.3.6
+
+# API Documentation
+drf-spectacular==0.27.0  # OpenAPI 3.0 schema
+
+# Testing
+pytest==7.4.4
+pytest-django==4.7.0
+factory-boy==3.3.0
+faker==22.2.0
+
+# Code Quality
+black==24.1.1
+flake8==7.0.0
+isort==5.13.2
+
+# Monitoring & Logging
+sentry-sdk==1.39.1
+
+# Utils
+python-decouple==3.8
+Pillow==12.2.0  # Image processing
+requests==2.31.0
+
+# Development
+django-debug-toolbar==4.2.0
+django-extensions==3.2.3

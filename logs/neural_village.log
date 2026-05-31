@@ -1,0 +1,1372 @@
+INFO 2026-05-26 09:33:20,275 autoreload 16300 9792 Watching for file changes with StatReloader
+INFO 2026-05-26 15:42:10,108 autoreload 18860 12972 Watching for file changes with StatReloader
+INFO 2026-05-27 02:02:20,112 autoreload 14928 15956 Watching for file changes with StatReloader
+INFO 2026-05-27 02:05:31,757 autoreload 14928 15956 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-27 02:05:34,991 autoreload 17724 15624 Watching for file changes with StatReloader
+INFO 2026-05-27 02:07:52,738 autoreload 17724 15624 C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\conf\__init__.py changed, reloading.
+INFO 2026-05-27 02:24:44,850 autoreload 13324 10160 Watching for file changes with StatReloader
+INFO 2026-05-27 02:25:20,536 autoreload 13324 10160 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-27 02:25:23,061 autoreload 12148 18180 Watching for file changes with StatReloader
+WARNING 2026-05-27 02:25:43,308 log 12148 976 Not Found: /favicon.ico
+INFO 2026-05-27 02:31:04,820 autoreload 12148 18180 C:\Users\HP\Desktop\David Bedford\neural_village\auth\urls.py changed, reloading.
+INFO 2026-05-27 02:31:07,433 autoreload 2400 2304 Watching for file changes with StatReloader
+INFO 2026-05-27 02:32:54,847 autoreload 2400 2304 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-27 02:32:57,653 autoreload 6292 13100 Watching for file changes with StatReloader
+INFO 2026-05-27 02:34:31,685 autoreload 6292 13100 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\urls.py changed, reloading.
+INFO 2026-05-27 02:34:34,028 autoreload 616 15124 Watching for file changes with StatReloader
+INFO 2026-05-27 02:36:08,829 autoreload 616 15124 C:\Users\HP\Desktop\David Bedford\neural_village\parent\urls.py changed, reloading.
+INFO 2026-05-27 02:36:11,322 autoreload 16860 3976 Watching for file changes with StatReloader
+INFO 2026-05-27 02:37:36,054 autoreload 16860 3976 C:\Users\HP\Desktop\David Bedford\neural_village\school_admin\urls.py changed, reloading.
+INFO 2026-05-27 02:37:37,871 autoreload 18032 2596 Watching for file changes with StatReloader
+INFO 2026-05-27 02:38:52,049 autoreload 18032 2596 C:\Users\HP\Desktop\David Bedford\neural_village\super_admin\urls.py changed, reloading.
+INFO 2026-05-27 02:38:55,155 autoreload 11252 13664 Watching for file changes with StatReloader
+INFO 2026-05-27 02:40:51,673 autoreload 11252 13664 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-27 02:40:54,357 autoreload 18096 17400 Watching for file changes with StatReloader
+INFO 2026-05-27 03:06:06,549 autoreload 14496 2380 Watching for file changes with StatReloader
+WARNING 2026-05-27 03:06:16,211 log 14496 764 Not Found: /favicon.ico
+INFO 2026-05-27 03:07:51,887 autoreload 14496 2380 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-27 03:07:57,891 autoreload 13180 2184 Watching for file changes with StatReloader
+INFO 2026-05-27 03:10:38,058 autoreload 13180 2184 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-27 03:10:42,771 autoreload 7736 1120 Watching for file changes with StatReloader
+INFO 2026-05-27 16:05:12,201 autoreload 9904 5496 Watching for file changes with StatReloader
+WARNING 2026-05-27 16:07:26,009 log 9904 11440 Not Found: /favicon.ico
+ERROR 2026-05-27 16:08:05,578 log 9904 11440 Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: auth_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 39, in login_view
+    user = authenticate(request, username=username, password=password)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\views\decorators\debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 114, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\backends.py", line 65, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\base_user.py", line 37, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: auth_user
+INFO 2026-05-27 16:17:41,228 autoreload 5964 5020 Watching for file changes with StatReloader
+ERROR 2026-05-27 16:17:51,250 log 5964 9400 Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 502, in __get__
+    rel_obj = self.related.get_cached_value(instance)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\mixins.py", line 21, in get_cached_value
+    return instance._state.fields_cache[self.cache_name]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_user_profile
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 43, in login_view
+    profile = getattr(user, 'profile', None)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 509, in __get__
+    rel_obj = self.get_queryset(instance=instance).get(**filter_args)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_user_profile
+ERROR 2026-05-27 16:18:30,553 log 5964 9400 Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 502, in __get__
+    rel_obj = self.related.get_cached_value(instance)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\mixins.py", line 21, in get_cached_value
+    return instance._state.fields_cache[self.cache_name]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_user_profile
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 43, in login_view
+    profile = getattr(user, 'profile', None)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 509, in __get__
+    rel_obj = self.get_queryset(instance=instance).get(**filter_args)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_user_profile
+ERROR 2026-05-27 16:19:14,747 log 5964 9400 Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 502, in __get__
+    rel_obj = self.related.get_cached_value(instance)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\mixins.py", line 21, in get_cached_value
+    return instance._state.fields_cache[self.cache_name]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_user_profile
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 43, in login_view
+    profile = getattr(user, 'profile', None)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 509, in __get__
+    rel_obj = self.get_queryset(instance=instance).get(**filter_args)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_user_profile
+WARNING 2026-05-27 17:01:28,985 log 5964 14848 Not Found: /favicon.ico
+WARNING 2026-05-27 17:01:39,530 log 5964 14848 Not Found: /login/
+INFO 2026-05-27 17:15:08,143 autoreload 5964 5020 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 17:15:10,587 autoreload 6276 15296 Watching for file changes with StatReloader
+INFO 2026-05-27 17:15:17,035 autoreload 6276 15296 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-27 17:15:19,214 autoreload 4124 3300 Watching for file changes with StatReloader
+WARNING 2026-05-27 17:16:23,948 log 4124 10244 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-27 17:18:01,442 autoreload 4124 3300 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-27 17:18:05,464 autoreload 14732 2840 Watching for file changes with StatReloader
+INFO 2026-05-27 17:28:53,058 autoreload 14732 2840 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 17:28:56,392 autoreload 14616 4120 Watching for file changes with StatReloader
+INFO 2026-05-27 17:32:50,433 autoreload 14616 4120 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 17:32:53,349 autoreload 12580 14520 Watching for file changes with StatReloader
+INFO 2026-05-27 17:33:32,013 autoreload 12580 14520 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 17:33:35,742 autoreload 14648 15204 Watching for file changes with StatReloader
+INFO 2026-05-27 17:54:46,070 autoreload 14648 15204 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 17:54:49,003 autoreload 11380 1432 Watching for file changes with StatReloader
+WARNING 2026-05-27 17:55:05,156 log 11380 15908 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-27 17:55:17,831 log 11380 15908 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-27 17:55:21,790 log 11380 11288 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-27 17:57:20,280 autoreload 11380 1432 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 17:57:23,535 autoreload 13704 16868 Watching for file changes with StatReloader
+WARNING 2026-05-27 18:01:31,059 log 13704 15060 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-27 18:03:57,618 autoreload 13704 16868 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 18:04:01,129 autoreload 5084 15648 Watching for file changes with StatReloader
+INFO 2026-05-27 18:09:10,008 autoreload 5084 15648 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 18:09:15,434 autoreload 7708 14184 Watching for file changes with StatReloader
+INFO 2026-05-27 18:10:35,022 autoreload 7708 14184 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-27 18:10:38,853 autoreload 9116 14940 Watching for file changes with StatReloader
+WARNING 2026-05-27 18:13:56,690 log 9116 2444 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-27 18:16:11,891 log 9116 2444 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-27 18:17:14,476 log 9116 2444 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-27 18:23:06,101 log 9116 14956 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+ERROR 2026-05-27 18:25:35,734 log 9116 14956 Internal Server Error: /portals/student/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 135, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 132, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 110, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: student/base_student.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py", line 58, in home
+    return render(request, 'student/dashboard.html', context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: student/base_student.html
+WARNING 2026-05-27 18:30:53,632 log 9116 15148 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-28 07:03:54,785 autoreload 9820 14572 Watching for file changes with StatReloader
+WARNING 2026-05-28 07:04:14,825 log 9820 10096 Not Found: /favicon.ico
+ERROR 2026-05-28 07:04:22,062 log 9820 7216 Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 31, in login_view
+    return redirect(get_dashboard_redirect(profile))
+                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 21, in get_dashboard_redirect
+    return reverse(ROLE_REDIRECTS.get(profile.role, 'auth:login'))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+WARNING 2026-05-28 07:04:45,661 log 9820 13280 Not Found: /dashboard/
+ERROR 2026-05-28 07:05:23,507 log 9820 1280 Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py", line 55, in login_view
+    return redirect(redirect_key or reverse('auth:login'))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+INFO 2026-05-28 07:07:08,155 autoreload 9820 14572 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-28 07:07:12,086 autoreload 14256 8380 Watching for file changes with StatReloader
+INFO 2026-05-28 07:07:41,758 autoreload 14256 8380 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-28 07:07:45,408 autoreload 5460 16564 Watching for file changes with StatReloader
+WARNING 2026-05-28 07:08:18,860 log 5460 6532 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-28 07:38:26,416 autoreload 5460 16564 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 07:38:31,017 autoreload 17212 3016 Watching for file changes with StatReloader
+INFO 2026-05-28 07:38:50,077 autoreload 17212 3016 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 07:38:53,656 autoreload 11088 6628 Watching for file changes with StatReloader
+INFO 2026-05-28 07:53:58,272 autoreload 11088 6628 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 07:54:01,938 autoreload 6928 9960 Watching for file changes with StatReloader
+ERROR 2026-05-28 07:57:52,392 log 6928 7076 Internal Server Error: /portals/student/chat/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py", line 182, in chat
+    return render(request, 'student/chat.html', context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'chat_send' not found. 'chat_send' is not a valid view function or pattern name.
+INFO 2026-05-28 07:58:49,822 autoreload 6928 9960 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 07:58:53,756 autoreload 16488 4244 Watching for file changes with StatReloader
+INFO 2026-05-28 07:59:13,126 autoreload 16488 4244 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-28 07:59:22,173 autoreload 14308 8688 Watching for file changes with StatReloader
+INFO 2026-05-28 08:00:09,533 autoreload 14308 8688 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:00:11,927 autoreload 9692 12240 Watching for file changes with StatReloader
+WARNING 2026-05-28 08:01:15,582 log 9692 13884 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-28 08:01:38,723 log 9692 12120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-28 08:01:44,888 log 9692 12120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-28 08:01:51,461 log 9692 12120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-28 08:01:53,384 autoreload 9692 12240 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:02:01,308 autoreload 3664 10996 Watching for file changes with StatReloader
+INFO 2026-05-28 08:02:26,274 autoreload 3664 10996 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:02:28,727 autoreload 9412 17128 Watching for file changes with StatReloader
+INFO 2026-05-28 08:03:57,676 autoreload 9412 17128 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:04:02,308 autoreload 12824 4172 Watching for file changes with StatReloader
+INFO 2026-05-28 08:08:46,466 autoreload 12824 4172 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-05-28 08:08:50,815 autoreload 7860 16716 Watching for file changes with StatReloader
+INFO 2026-05-28 08:09:03,715 autoreload 7860 16716 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:09:10,375 autoreload 10936 16076 Watching for file changes with StatReloader
+INFO 2026-05-28 08:13:08,768 autoreload 10936 16076 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py changed, reloading.
+INFO 2026-05-28 08:13:11,927 autoreload 12772 13208 Watching for file changes with StatReloader
+INFO 2026-05-28 08:14:12,682 autoreload 12772 13208 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py changed, reloading.
+INFO 2026-05-28 08:14:16,229 autoreload 4948 16080 Watching for file changes with StatReloader
+ERROR 2026-05-28 08:15:29,522 log 4948 11984 Internal Server Error: /portals/student/live-class/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_attendancesession
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py", line 147, in live_class
+    ).select_related('module', 'instructor').first()
+                                             ~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 1145, in first
+    for obj in queryset[:1]:
+               ~~~~~~~~^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_attendancesession
+ERROR 2026-05-28 08:17:51,917 log 4948 8220 Internal Server Error: /portals/student/live-class/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_attendancesession
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py", line 147, in live_class
+    ).select_related('module', 'instructor').first()
+                                             ~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 1145, in first
+    for obj in queryset[:1]:
+               ~~~~~~~~^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_attendancesession
+INFO 2026-05-28 08:19:03,787 autoreload 4948 16080 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:19:08,493 autoreload 6568 3248 Watching for file changes with StatReloader
+ERROR 2026-05-28 08:19:10,984 log 6568 1760 Internal Server Error: /portals/student/live-class/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_attendancesession
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py", line 147, in live_class
+    ).select_related('module', 'instructor').first()
+                                             ~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 1145, in first
+    for obj in queryset[:1]:
+               ~~~~~~~~^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_attendancesession
+ERROR 2026-05-28 08:26:31,267 log 6568 16824 Internal Server Error: /portals/student/live-class/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_attendancesession
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py", line 147, in live_class
+    ).select_related('module', 'instructor').first()
+                                             ~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 1145, in first
+    for obj in queryset[:1]:
+               ~~~~~~~~^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_attendancesession
+INFO 2026-05-28 08:32:28,629 autoreload 6568 3248 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:32:32,557 autoreload 12252 14020 Watching for file changes with StatReloader
+INFO 2026-05-28 08:34:01,437 autoreload 12252 14020 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:34:04,758 autoreload 4832 2300 Watching for file changes with StatReloader
+INFO 2026-05-28 08:42:37,479 autoreload 4832 2300 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:42:41,091 autoreload 5652 14992 Watching for file changes with StatReloader
+INFO 2026-05-28 08:42:55,489 autoreload 5652 14992 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:42:59,381 autoreload 840 16564 Watching for file changes with StatReloader
+INFO 2026-05-28 08:50:20,444 autoreload 840 16564 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:50:24,434 autoreload 12748 9860 Watching for file changes with StatReloader
+INFO 2026-05-28 08:55:11,060 autoreload 12748 9860 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:55:16,985 autoreload 16904 14028 Watching for file changes with StatReloader
+INFO 2026-05-28 08:57:38,366 autoreload 16904 14028 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 08:57:47,869 autoreload 16836 12024 Watching for file changes with StatReloader
+INFO 2026-05-28 12:04:45,300 autoreload 9156 5264 Watching for file changes with StatReloader
+WARNING 2026-05-28 12:07:15,103 log 9156 15184 Not Found: /favicon.ico
+WARNING 2026-05-28 12:14:49,909 log 9156 15184 Not Found: /123adonai
+INFO 2026-05-28 12:55:45,994 autoreload 15232 3088 Watching for file changes with StatReloader
+INFO 2026-05-28 12:59:37,677 autoreload 15232 3088 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 12:59:43,558 autoreload 10904 13856 Watching for file changes with StatReloader
+INFO 2026-05-28 13:09:13,076 autoreload 10904 13856 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 13:09:16,238 autoreload 11332 15696 Watching for file changes with StatReloader
+INFO 2026-05-28 13:23:34,091 autoreload 11332 15696 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-28 13:23:38,661 autoreload 12236 8596 Watching for file changes with StatReloader
+INFO 2026-05-28 13:26:42,345 autoreload 12236 8596 C:\Users\HP\Desktop\David Bedford\neural_village\student\urls.py changed, reloading.
+INFO 2026-05-28 13:26:47,295 autoreload 15232 3728 Watching for file changes with StatReloader
+INFO 2026-05-28 13:37:15,953 autoreload 15232 3728 C:\Users\HP\Desktop\David Bedford\neural_village\api\__init__.py changed, reloading.
+INFO 2026-05-28 13:37:21,556 autoreload 15100 15444 Watching for file changes with StatReloader
+INFO 2026-05-28 13:37:48,478 autoreload 15100 15444 C:\Users\HP\Desktop\David Bedford\neural_village\core\migrations\0001_initial.py changed, reloading.
+INFO 2026-05-28 13:37:53,870 autoreload 16260 16372 Watching for file changes with StatReloader
+INFO 2026-05-28 13:38:18,039 autoreload 16260 16372 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-05-28 13:38:21,824 autoreload 14732 7312 Watching for file changes with StatReloader
+INFO 2026-05-28 13:39:56,702 autoreload 14732 7312 C:\Users\HP\Desktop\David Bedford\neural_village\__init__.py changed, reloading.
+INFO 2026-05-28 13:40:04,016 autoreload 1600 16056 Watching for file changes with StatReloader
+INFO 2026-05-28 14:33:36,963 autoreload 1600 16056 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-05-28 14:33:40,528 autoreload 17360 10880 Watching for file changes with StatReloader
+INFO 2026-05-28 14:34:41,944 autoreload 17360 10880 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py changed, reloading.
+INFO 2026-05-28 14:34:44,442 autoreload 2848 8520 Watching for file changes with StatReloader
+INFO 2026-05-28 14:35:07,938 autoreload 2848 8520 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\urls.py changed, reloading.
+INFO 2026-05-28 14:35:09,656 autoreload 5984 11256 Watching for file changes with StatReloader
+INFO 2026-05-28 14:40:00,158 autoreload 5984 11256 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-05-28 14:40:03,823 autoreload 2144 2352 Watching for file changes with StatReloader
+ERROR 2026-05-28 14:47:29,839 log 2144 16108 Internal Server Error: /portals/instructor/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_navigationevent
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\auth\decorators.py", line 14, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py", line 148, in dashboard
+    _log_instructor_event(request, 'page_view', target_model='InstructorDashboard', target_label='Dashboard')
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py", line 28, in _log_instructor_event
+    NavigationEvent.objects.create(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        user=request.user,
+        ^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        user_agent=request.META.get('HTTP_USER_AGENT', '')[:512],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_navigationevent
+WARNING 2026-05-28 14:53:59,768 log 2144 11496 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-28 15:11:30,041 autoreload 2144 2352 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-05-28 15:11:46,897 autoreload 16788 6320 Watching for file changes with StatReloader
+INFO 2026-05-28 15:12:49,517 autoreload 16788 6320 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-05-28 15:13:04,579 autoreload 14940 8704 Watching for file changes with StatReloader
+INFO 2026-05-28 15:39:51,698 autoreload 14940 8704 C:\Users\HP\Desktop\David Bedford\neural_village\auth\forms.py changed, reloading.
+INFO 2026-05-28 15:40:07,291 autoreload 18172 7432 Watching for file changes with StatReloader
+INFO 2026-05-28 15:40:15,850 autoreload 18172 7432 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-28 15:40:30,471 autoreload 18376 17096 Watching for file changes with StatReloader
+INFO 2026-05-28 15:41:47,684 autoreload 18376 17096 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-28 15:42:05,399 autoreload 14684 17660 Watching for file changes with StatReloader
+INFO 2026-05-28 15:53:40,392 autoreload 14684 17660 C:\Users\HP\Desktop\David Bedford\neural_village\auth\forms.py changed, reloading.
+INFO 2026-05-28 15:53:57,372 autoreload 17940 17924 Watching for file changes with StatReloader
+INFO 2026-05-28 15:55:18,933 autoreload 17940 17924 C:\Users\HP\Desktop\David Bedford\neural_village\auth\forms.py changed, reloading.
+INFO 2026-05-28 15:55:35,738 autoreload 14716 11900 Watching for file changes with StatReloader
+INFO 2026-05-29 10:03:37,666 autoreload 13568 16312 Watching for file changes with StatReloader
+WARNING 2026-05-29 10:05:13,266 log 13568 13352 Not Found: /favicon.ico
+WARNING 2026-05-29 10:05:17,747 log 13568 2776 Not Found: /favicon.ico
+INFO 2026-05-29 10:50:37,549 autoreload 13568 16312 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-29 10:50:43,921 autoreload 2132 16780 Watching for file changes with StatReloader
+INFO 2026-05-29 10:51:36,349 autoreload 2132 16780 C:\Users\HP\Desktop\David Bedford\neural_village\student\views.py changed, reloading.
+INFO 2026-05-29 10:51:38,258 autoreload 14032 11248 Watching for file changes with StatReloader
+ERROR 2026-05-29 12:49:13,824 log 14032 1896 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 229, in do_block
+    raise TemplateSyntaxError(
+        "'%s' tag with name '%s' appears more than once" % (bits[0], block_name)
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\HP\Desktop\David Bedford\templates\landing.html, 'block' tag with name 'content' appears more than once
+INFO 2026-05-29 13:48:38,523 autoreload 10916 17980 Watching for file changes with StatReloader
+WARNING 2026-05-29 13:49:27,343 log 10916 15588 Not Found: /favicon.ico
+WARNING 2026-05-29 13:50:18,471 log 10916 15588 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+ERROR 2026-05-29 14:03:45,593 log 10916 10788 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 229, in do_block
+    raise TemplateSyntaxError(
+        "'%s' tag with name '%s' appears more than once" % (bits[0], block_name)
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\HP\Desktop\David Bedford\templates\landing.html, 'block' tag with name 'title' appears more than once
+ERROR 2026-05-29 14:05:30,272 log 10916 17772 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 229, in do_block
+    raise TemplateSyntaxError(
+        "'%s' tag with name '%s' appears more than once" % (bits[0], block_name)
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\HP\Desktop\David Bedford\templates\landing.html, 'block' tag with name 'content' appears more than once
+ERROR 2026-05-29 14:05:40,644 log 10916 17772 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 229, in do_block
+    raise TemplateSyntaxError(
+        "'%s' tag with name '%s' appears more than once" % (bits[0], block_name)
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\HP\Desktop\David Bedford\templates\landing.html, 'block' tag with name 'title' appears more than once
+INFO 2026-05-30 08:07:59,557 autoreload 14852 8608 Watching for file changes with StatReloader
+WARNING 2026-05-30 08:12:13,850 log 14852 3620 Not Found: /favicon.ico
+WARNING 2026-05-30 08:12:49,885 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:14:07,877 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:14:20,812 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:14:28,377 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:14:38,494 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:14:46,508 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:14:52,236 log 14852 3620 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:15:01,414 log 14852 13300 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-30 08:15:10,091 log 14852 7292 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-30 08:53:31,328 autoreload 14852 8608 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 08:53:35,479 autoreload 17644 1648 Watching for file changes with StatReloader
+INFO 2026-05-30 08:53:55,857 autoreload 17644 1648 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 08:53:59,509 autoreload 17288 2628 Watching for file changes with StatReloader
+INFO 2026-05-30 09:06:56,655 autoreload 17288 2628 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 09:06:59,860 autoreload 15368 14636 Watching for file changes with StatReloader
+INFO 2026-05-30 09:08:01,678 autoreload 15368 14636 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 09:08:04,568 autoreload 11196 4232 Watching for file changes with StatReloader
+ERROR 2026-05-30 09:10:45,243 log 11196 4244 Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\utils\deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\http\request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+ERROR 2026-05-30 09:10:46,894 log 11196 1408 Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\utils\deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\http\request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+ERROR 2026-05-30 09:11:09,690 log 11196 6904 Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\utils\deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\http\request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+ERROR 2026-05-30 09:11:10,333 log 11196 14492 Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\utils\deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\http\request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'admin.lvh.me:8000'. You may need to add 'admin.lvh.me' to ALLOWED_HOSTS.
+INFO 2026-05-30 09:16:14,534 autoreload 11196 4232 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-30 09:16:17,912 autoreload 11248 13548 Watching for file changes with StatReloader
+WARNING 2026-05-30 09:17:01,731 log 11248 1972 Not Found: /favicon.ico
+INFO 2026-05-30 09:17:06,489 autoreload 11248 13548 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-30 09:17:09,306 autoreload 9628 11616 Watching for file changes with StatReloader
+WARNING 2026-05-30 09:18:32,571 log 9628 14604 Not Found: /favicon.ico
+WARNING 2026-05-30 09:18:47,011 log 9628 5104 Not Found: /favicon.ico
+INFO 2026-05-30 09:19:25,848 autoreload 9628 11616 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-30 23:08:35,857 autoreload 18036 1472 Watching for file changes with StatReloader
+INFO 2026-05-30 23:09:13,259 autoreload 18036 1472 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:09:15,175 autoreload 16216 9292 Watching for file changes with StatReloader
+INFO 2026-05-30 23:09:22,480 autoreload 16216 9292 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 23:09:24,313 autoreload 15944 15380 Watching for file changes with StatReloader
+INFO 2026-05-30 23:09:33,072 autoreload 15944 15380 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:09:35,145 autoreload 10228 16448 Watching for file changes with StatReloader
+INFO 2026-05-30 23:12:41,449 autoreload 10228 16448 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 23:12:44,256 autoreload 8092 2896 Watching for file changes with StatReloader
+WARNING 2026-05-30 23:13:14,400 log 8092 3240 Not Found: /favicon.ico
+INFO 2026-05-30 23:14:49,223 autoreload 8092 2896 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:14:53,275 autoreload 14136 12908 Watching for file changes with StatReloader
+INFO 2026-05-30 23:16:27,087 autoreload 14136 12908 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:16:28,917 autoreload 2696 14504 Watching for file changes with StatReloader
+WARNING 2026-05-30 23:16:42,922 log 2696 15888 Not Found: /favicon.ico
+INFO 2026-05-30 23:18:22,950 autoreload 2696 14504 C:\Users\HP\Desktop\David Bedford\neural_village\school_admin\urls.py changed, reloading.
+INFO 2026-05-30 23:18:27,521 autoreload 10212 6012 Watching for file changes with StatReloader
+INFO 2026-05-30 23:19:13,073 autoreload 10212 6012 C:\Users\HP\Desktop\David Bedford\neural_village\school_admin\urls.py changed, reloading.
+INFO 2026-05-30 23:19:15,761 autoreload 1680 15864 Watching for file changes with StatReloader
+INFO 2026-05-30 23:26:01,199 autoreload 1680 15864 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:26:04,928 autoreload 15220 14180 Watching for file changes with StatReloader
+INFO 2026-05-30 23:26:52,726 autoreload 15220 14180 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:26:55,270 autoreload 14808 16000 Watching for file changes with StatReloader
+WARNING 2026-05-30 23:32:18,522 log 14808 4384 Not Found: /favicon.ico
+INFO 2026-05-30 23:36:32,843 autoreload 14808 16000 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:36:39,952 autoreload 16056 224 Watching for file changes with StatReloader
+INFO 2026-05-30 23:38:07,032 autoreload 16056 224 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-30 23:38:10,021 autoreload 16436 11836 Watching for file changes with StatReloader
+INFO 2026-05-30 23:38:25,847 autoreload 16436 11836 C:\Users\HP\Desktop\David Bedford\neural_village\auth\views.py changed, reloading.
+INFO 2026-05-30 23:38:28,953 autoreload 6168 16832 Watching for file changes with StatReloader
+WARNING 2026-05-30 23:38:47,824 log 6168 15684 Not Found: /favicon.ico
+INFO 2026-05-30 23:49:28,003 autoreload 6168 16832 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:49:32,669 autoreload 14488 17212 Watching for file changes with StatReloader
+INFO 2026-05-30 23:54:23,685 autoreload 14488 17212 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-30 23:54:27,676 autoreload 10420 12028 Watching for file changes with StatReloader
+INFO 2026-05-31 00:07:06,491 autoreload 10420 12028 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-05-31 00:07:10,659 autoreload 14992 15732 Watching for file changes with StatReloader
+INFO 2026-05-31 00:07:17,822 autoreload 14992 15732 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-05-31 00:07:20,885 autoreload 15956 13948 Watching for file changes with StatReloader
+INFO 2026-05-31 00:07:44,454 autoreload 15956 13948 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-05-31 00:07:47,450 autoreload 17248 16028 Watching for file changes with StatReloader
+INFO 2026-05-31 00:09:54,195 autoreload 17248 16028 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-05-31 00:09:58,237 autoreload 8112 8712 Watching for file changes with StatReloader
+INFO 2026-05-31 00:10:20,418 autoreload 8112 8712 C:\Users\HP\Desktop\David Bedford\neural_village\core\apps.py changed, reloading.
+INFO 2026-05-31 00:10:23,255 autoreload 18252 9452 Watching for file changes with StatReloader
+INFO 2026-05-31 00:11:28,533 autoreload 18252 9452 C:\Users\HP\Desktop\David Bedford\neural_village\core\signals.py changed, reloading.
+INFO 2026-05-31 00:11:31,659 autoreload 5184 4560 Watching for file changes with StatReloader
+INFO 2026-05-31 00:39:36,028 autoreload 5184 4560 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\urls.py changed, reloading.
+INFO 2026-05-31 00:39:40,868 autoreload 18096 15492 Watching for file changes with StatReloader
+INFO 2026-05-31 00:39:55,889 autoreload 18096 15492 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py changed, reloading.
+INFO 2026-05-31 00:39:59,891 autoreload 6672 18248 Watching for file changes with StatReloader
+INFO 2026-05-31 00:40:11,250 autoreload 6672 18248 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\views.py changed, reloading.
+INFO 2026-05-31 00:40:13,875 autoreload 16284 15772 Watching for file changes with StatReloader
+INFO 2026-05-31 00:40:40,642 autoreload 16284 15772 C:\Users\HP\Desktop\David Bedford\neural_village\instructor\urls.py changed, reloading.
+INFO 2026-05-31 00:40:42,946 autoreload 10404 12084 Watching for file changes with StatReloader
+INFO 2026-05-31 01:13:53,607 autoreload 10404 12084 C:\Users\HP\Desktop\David Bedford\neural_village\urls.py changed, reloading.
+INFO 2026-05-31 01:13:58,975 autoreload 14896 14864 Watching for file changes with StatReloader
+INFO 2026-05-31 01:14:08,752 autoreload 14896 14864 C:\Users\HP\Desktop\David Bedford\neural_village\school_admin\views.py changed, reloading.
+INFO 2026-05-31 01:14:11,036 autoreload 17672 16740 Watching for file changes with StatReloader
+INFO 2026-05-31 01:14:15,632 autoreload 17672 16740 C:\Users\HP\Desktop\David Bedford\neural_village\parent\urls.py changed, reloading.
+INFO 2026-05-31 01:14:17,963 autoreload 11744 15508 Watching for file changes with StatReloader
+INFO 2026-05-31 01:14:23,258 autoreload 11744 15508 C:\Users\HP\Desktop\David Bedford\neural_village\parent\views.py changed, reloading.
+INFO 2026-05-31 01:14:25,450 autoreload 18152 2908 Watching for file changes with StatReloader
+INFO 2026-05-31 11:54:33,577 autoreload 16292 15008 Watching for file changes with StatReloader
+WARNING 2026-05-31 11:58:32,900 log 16292 14520 Not Found: /favicon.ico
+INFO 2026-05-31 12:06:33,698 autoreload 16292 15008 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-31 12:06:36,505 autoreload 15424 5308 Watching for file changes with StatReloader
+INFO 2026-05-31 12:06:41,763 autoreload 15424 5308 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-05-31 12:06:43,636 autoreload 16560 5992 Watching for file changes with StatReloader
+INFO 2026-05-31 12:08:52,308 autoreload 16560 5992 C:\Users\HP\Desktop\David Bedford\neural_village\middleware.py changed, reloading.
+INFO 2026-05-31 12:08:55,400 autoreload 12844 1056 Watching for file changes with StatReloader
+INFO 2026-05-31 12:10:38,669 autoreload 12844 1056 C:\Users\HP\Desktop\David Bedford\neural_village\urls.py changed, reloading.
+INFO 2026-05-31 12:10:41,553 autoreload 9484 6020 Watching for file changes with StatReloader
+INFO 2026-05-31 12:17:55,932 autoreload 12600 3112 Watching for file changes with StatReloader

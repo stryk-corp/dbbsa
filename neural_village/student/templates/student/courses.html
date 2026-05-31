@@ -1,0 +1,419 @@
+{% extends 'student/base_student.html' %}
+
+{% block title %}Courses — {{ welcome_name }}{% endblock %}
+
+{% block content %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f5f4f1;
+    --surface: #ffffff;
+    --surface-raised: #fdfcfa;
+    --border: #e8e6e1;
+    --border-soft: #f0ede8;
+    --text-primary: #1a1917;
+    --text-secondary: #6b6864;
+    --text-tertiary: #a8a5a0;
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #f0fdfa;
+    --teal-mid: #99f6e4;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --sky: #0284c7;
+    --sky-light: #f0f9ff;
+    --violet: #7c3aed;
+    --violet-light: #f5f3ff;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .pg-wrap {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 24px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--text-primary);
+    border-radius: var(--radius-xl);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -50px; top: -50px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: var(--teal); opacity: 0.12; pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; left: 38%; bottom: -50px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: var(--violet); opacity: 0.08; pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 32px; font-weight: 600; color: #fff;
+    letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px;
+  }
+  .hero-desc {
+    font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 420px;
+  }
+  .hero-meta {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+    min-width: 180px; flex-shrink: 0;
+  }
+  .hero-meta-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+  }
+  .hero-meta-value {
+    font-size: 15px; font-weight: 600; color: #fff;
+  }
+  .hero-meta-sub {
+    font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px;
+  }
+
+  /* ── Quick links row ── */
+  .quick-links {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .quick-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    box-shadow: var(--shadow-sm);
+  }
+  .quick-link svg { color: var(--text-tertiary); transition: color 0.15s; flex-shrink: 0; }
+  .quick-link:hover {
+    border-color: var(--teal); background: var(--teal-light);
+    color: var(--teal);
+  }
+  .quick-link:hover svg { color: var(--teal); }
+
+  /* ── Section label ── */
+  .section-label {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .section-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+  .section-sub   { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .module-count-badge {
+    font-size: 12px; font-weight: 600; padding: 4px 12px;
+    border-radius: 20px; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text-secondary); white-space: nowrap;
+  }
+
+  /* ── Module grid ── */
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  /* ── Module card ── */
+  .module-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 0;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .module-card:hover {
+    border-color: #c7c4be;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+  /* Subtle left accent bar */
+  .module-card::before {
+    content: '';
+    position: absolute; left: 0; top: 16px; bottom: 16px;
+    width: 3px; border-radius: 0 3px 3px 0;
+    background: var(--accent-color, var(--teal));
+  }
+  .module-card.accent-teal   { --accent-color: var(--teal); }
+  .module-card.accent-amber  { --accent-color: var(--amber); }
+  .module-card.accent-sky    { --accent-color: var(--sky); }
+  .module-card.accent-violet { --accent-color: var(--violet); }
+
+  /* Card top: track + code + title */
+  .mc-track {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 6px;
+    padding-left: 12px;
+  }
+  .mc-title-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 12px; padding-left: 12px; margin-bottom: 12px;
+  }
+  .mc-code {
+    font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+    color: var(--accent-color, var(--teal));
+    background: color-mix(in srgb, var(--accent-color, var(--teal)) 10%, transparent);
+    padding: 3px 8px; border-radius: 5px; margin-bottom: 4px;
+    display: inline-block;
+  }
+  .mc-name {
+    font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.3;
+  }
+  .mc-stats {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0;
+  }
+  .mc-stat {
+    font-size: 12px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 4px; white-space: nowrap;
+  }
+  .mc-stat svg { color: var(--text-tertiary); }
+
+  /* Description */
+  .mc-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+    padding-left: 12px; margin-bottom: 16px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Tags row */
+  .mc-tags {
+    display: flex; gap: 6px; flex-wrap: wrap; padding-left: 12px; margin-bottom: 18px;
+  }
+  .mc-tag {
+    font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+    border: 1px solid var(--border-soft); background: var(--bg); color: var(--text-secondary);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .mc-tag svg { color: var(--text-tertiary); }
+
+  /* Divider */
+  .mc-divider {
+    height: 1px; background: var(--border-soft);
+    margin: 0 0 16px; margin-left: 12px;
+  }
+
+  /* Actions */
+  .mc-actions {
+    display: flex; gap: 8px; flex-wrap: wrap; padding-left: 12px;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 16px; border-radius: var(--radius-md);
+    background: var(--teal); color: #fff;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    border: none; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--teal-dark); }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 14px; border-radius: var(--radius-md);
+    background: var(--bg); color: var(--text-secondary);
+    font-size: 13px; font-weight: 500; text-decoration: none;
+    border: 1px solid var(--border); cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { background: var(--surface); border-color: #c7c4be; color: var(--text-primary); }
+
+  /* ── Empty state ── */
+  .empty-state {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-xl); padding: 72px 24px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; box-shadow: var(--shadow-sm);
+  }
+  .empty-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--teal-light); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--teal) 6%, transparent);
+  }
+  .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+  .empty-state p  { font-size: 14px; color: var(--text-secondary); max-width: 380px; line-height: 1.6; }
+
+  /* ── Responsive ── */
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-meta { min-width: unset; }
+  }
+  @media (max-width: 560px) {
+    .pg-wrap { padding: 16px 14px 40px; gap: 16px; }
+    .hero { padding: 24px 22px; }
+    .hero h1 { font-size: 24px; }
+    .module-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="pg-wrap">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div style="position:relative;z-index:1;">
+      <p class="hero-eyebrow">Learning Track</p>
+      <h1>Your Courses</h1>
+      <p class="hero-desc">{{ course_message }}</p>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-label">Active cohort</div>
+      <div class="hero-meta-value">{{ cohort_name }}</div>
+      <div class="hero-meta-sub">
+        {{ course_modules|length }} module{{ course_modules|length|pluralize }} assigned
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quick links ── -->
+  <div class="quick-links">
+    <a href="{% url 'student:assignments' %}" class="quick-link">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M9 12l2 2 4-4"/><path d="M5 7h14M5 12h6m-6 5h14"/>
+      </svg>
+      CBT Assignments
+    </a>
+    <a href="{% url 'student:live_quizzes' %}" class="quick-link">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      Live Quizzes
+    </a>
+    <a href="{% url 'student:chat' %}" class="quick-link">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      Class Chat
+    </a>
+  </div>
+
+  <!-- ── Module list or empty state ── -->
+  {% if course_modules %}
+
+  <div class="section-label">
+    <div>
+      <div class="section-title">Course modules</div>
+      <div class="section-sub">Your active modules for the {{ cohort_name }} track</div>
+    </div>
+    <span class="module-count-badge">{{ course_modules|length }} module{{ course_modules|length|pluralize }}</span>
+  </div>
+
+  <div class="module-grid">
+    {% for module in course_modules %}
+
+    {# Cycle accent colours so adjacent cards feel distinct #}
+    {% cycle 'accent-teal' 'accent-amber' 'accent-sky' 'accent-violet' as accent silent %}
+
+    <div class="module-card {{ accent }}">
+
+      <p class="mc-track">{{ module.track }}</p>
+
+      <div class="mc-title-row">
+        <div>
+          <span class="mc-code">{{ module.code }}</span>
+          <div class="mc-name">{{ module.name }}</div>
+        </div>
+        <div class="mc-stats">
+          <span class="mc-stat">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            {{ module.duration_weeks }}w
+          </span>
+          <span class="mc-stat">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            {{ module.credits }} cr
+          </span>
+        </div>
+      </div>
+
+      <p class="mc-desc">{{ module.description }}</p>
+
+      <div class="mc-tags">
+        <span class="mc-tag">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+          </svg>
+          {{ module.quiz_count }} CBT quiz{{ module.quiz_count|pluralize:"zes" }}
+        </span>
+        <span class="mc-tag">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          {{ module.graded_quizzes }} graded
+        </span>
+      </div>
+
+      <div class="mc-divider"></div>
+
+      <div class="mc-actions">
+        <a href="{% url 'student:assignments' %}" class="btn-primary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          View quizzes
+        </a>
+        <a href="{% url 'student:chat' %}" class="btn-ghost">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Discuss
+        </a>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+
+  <div class="empty-state">
+    <div class="empty-icon">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+    </div>
+    <h3>No courses yet</h3>
+    <p>Once your instructor assigns modules to the {{ cohort_name }} cohort, they'll appear here with quiz status and course details.</p>
+  </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

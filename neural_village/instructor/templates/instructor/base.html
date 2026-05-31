@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Instructor Portal{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-sky-700 text-white shadow-lg">
+            <div class="container mx-auto px-6 py-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.3em] text-sky-200">Instructor Portal</p>
+                    <h1 class="text-4xl font-bold">{% block page_title %}Instructor dashboard{% endblock %}</h1>
+                    <p class="mt-2 text-sm text-sky-100">{{ school.name }} · {{ school.location }}</p>
+                </div>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <a href="{% url 'instructor:dashboard' %}" class="rounded-full px-5 py-3 text-sm font-semibold {% if current_page == 'dashboard' %}bg-white text-slate-900{% else %}bg-white/10 text-white ring-1 ring-white/10 hover:bg-white/15{% endif %}" data-track-event data-event-type="navigation" data-event-label="Dashboard">Dashboard</a>
+                    <a href="{% url 'instructor:cohorts' %}" class="rounded-full px-5 py-3 text-sm font-semibold {% if current_page == 'cohorts' %}bg-white text-slate-900{% else %}bg-white/10 text-white ring-1 ring-white/10 hover:bg-white/15{% endif %}" data-track-event data-event-type="navigation" data-event-label="Cohorts">Cohorts</a>
+                    <a href="{% url 'instructor:students' %}" class="rounded-full px-5 py-3 text-sm font-semibold {% if current_page == 'students' %}bg-white text-slate-900{% else %}bg-white/10 text-white ring-1 ring-white/10 hover:bg-white/15{% endif %}" data-track-event data-event-type="navigation" data-event-label="Students">Students</a>
+                    <a href="{% url 'instructor:insights' %}" class="rounded-full px-5 py-3 text-sm font-semibold {% if current_page == 'insights' %}bg-white text-slate-900{% else %}bg-white/10 text-white ring-1 ring-white/10 hover:bg-white/15{% endif %}" data-track-event data-event-type="navigation" data-event-label="Insights">Insights</a>
+                    <a href="{% url 'instructor:school_overview' %}" class="rounded-full px-5 py-3 text-sm font-semibold {% if current_page == 'school_overview' %}bg-amber-400 text-slate-900{% else %}bg-amber-400/90 text-slate-900 hover:bg-amber-300{% endif %}" data-track-event data-event-type="navigation" data-event-label="School Overview">School Overview</a>
+                    <a href="/auth/logout/" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800" data-track-event data-event-type="button_click" data-event-label="Logout">Sign Out</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-6 py-10 space-y-8">
+            {% if messages %}
+                <div class="space-y-3">
+                    {% for message in messages %}
+                        <div class="rounded-3xl border px-4 py-3 text-sm font-medium {% if message.tags == 'success' %}bg-emerald-50 text-emerald-800 border-emerald-200{% elif message.tags == 'error' %}bg-rose-50 text-rose-800 border-rose-200{% else %}bg-slate-50 text-slate-800 border-slate-200{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script>
+        const logEventUrl = "{% url 'instructor:log_event' %}";
+        const csrftoken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1];
+
+        function trackEvent(type, targetModel, targetLabel, metadata = {}) {
+            fetch(logEventUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken || '',
+                },
+                body: JSON.stringify({
+                    event_type: type,
+                    target_model: targetModel,
+                    target_label: targetLabel,
+                    metadata,
+                }),
+            }).catch(() => {});
+        }
+
+        document.querySelectorAll('[data-track-event]').forEach(el => {
+            el.addEventListener('click', () => {
+                trackEvent(el.dataset.eventType, el.dataset.targetModel || 'InstructorPortal', el.dataset.targetLabel || el.textContent.trim());
+            });
+        });
+
+        window.addEventListener('load', () => {
+            trackEvent('page_view', '{{ page_name|default:'InstructorPortal' }}', '{{ page_label|default:page_name|default:'Instructor Portal' }}', { path: window.location.pathname });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

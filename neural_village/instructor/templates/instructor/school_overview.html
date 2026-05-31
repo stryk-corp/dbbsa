@@ -1,0 +1,76 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}School Overview — {{ school.name }}{% endblock %}
+{% block page_title %}{{ school.name }} overview{% endblock %}
+{% block content %}
+<section class="grid gap-6 lg:grid-cols-4">
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Total cohorts</p>
+        <p class="mt-4 text-4xl font-bold text-slate-900">{{ total_cohorts }}</p>
+    </div>
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Active cohorts</p>
+        <p class="mt-4 text-4xl font-bold text-sky-700">{{ active_cohorts.count }}</p>
+    </div>
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Students</p>
+        <p class="mt-4 text-4xl font-bold text-slate-900">{{ total_students }}</p>
+    </div>
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Instructors</p>
+        <p class="mt-4 text-4xl font-bold text-slate-900">{{ total_instructors }}</p>
+    </div>
+</section>
+
+<section class="grid gap-6 lg:grid-cols-2">
+    <article class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900">Operational readiness</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-3xl bg-slate-50 p-6">
+                <p class="text-sm text-slate-500">Open attendance</p>
+                <p class="mt-3 text-3xl font-semibold text-slate-900">{{ open_attendance_sessions }}</p>
+            </div>
+            <div class="rounded-3xl bg-slate-50 p-6">
+                <p class="text-sm text-slate-500">Pending reviews</p>
+                <p class="mt-3 text-3xl font-semibold text-amber-700">{{ pending_reviews }}</p>
+            </div>
+        </div>
+    </article>
+    <article class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900">School details</h2>
+        <div class="mt-6 space-y-4 text-slate-600">
+            <p><span class="font-semibold text-slate-900">Partner since:</span> {{ school.partner_since|date:'M d, Y' }}</p>
+            <p><span class="font-semibold text-slate-900">Capacity:</span> {{ school.student_capacity }} students</p>
+            <p><span class="font-semibold text-slate-900">SUBEB verified:</span> {% if school.subeb_verified %}Yes{% else %}Pending{% endif %}</p>
+            <p><span class="font-semibold text-slate-900">Hardware inventory verified:</span> {% if school.hardware_inventory_verified %}Yes{% else %}Pending{% endif %}</p>
+        </div>
+    </article>
+</section>
+
+<section class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+    <div class="flex items-center justify-between gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-900">Cohort portfolio</h2>
+            <p class="mt-2 text-sm text-slate-600">Review every cohort at your school and access details.</p>
+        </div>
+    </div>
+    {% if school_cohorts %}
+        <div class="mt-8 grid gap-4">
+            {% for cohort in school_cohorts %}
+                <a href="{% url 'instructor:cohort_detail' cohort.id %}" class="block rounded-3xl border border-slate-200 bg-slate-50 p-6 transition hover:border-sky-300 hover:bg-white" data-track-event data-event-type="navigation" data-event-label="Cohort {{ cohort.name }}">
+                    <div class="flex items-center justify-between gap-4">
+                        <div>
+                            <p class="text-sm text-slate-500">{{ cohort.track|title }} track</p>
+                            <p class="mt-1 text-lg font-semibold text-slate-900">{{ cohort.name }}</p>
+                        </div>
+                        <div class="rounded-full bg-slate-100 px-3 py-1 text-xs uppercase tracking-[0.14em] text-slate-600">{{ cohort.status|title }}</div>
+                    </div>
+                    <p class="mt-4 text-sm text-slate-600">{{ cohort.current_enrollment }} active students · {{ cohort.start_date|date:'M d' }} – {{ cohort.end_date|date:'M d' }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="mt-6 text-slate-600">No cohorts have been created for this school yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,1 @@
+"""School admin portal package."""

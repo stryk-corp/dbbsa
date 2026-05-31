@@ -1,0 +1,776 @@
+{% extends 'student/base_student.html' %}
+
+{% block title %}Live Class — {{ welcome_name }}{% endblock %}
+
+{% block content %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f5f4f1;
+    --surface: #ffffff;
+    --surface-raised: #fdfcfa;
+    --border: #e8e6e1;
+    --border-soft: #f0ede8;
+    --text-primary: #1a1917;
+    --text-secondary: #6b6864;
+    --text-tertiary: #a8a5a0;
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #f0fdfa;
+    --teal-mid: #99f6e4;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --green-mid: #86efac;
+    --sky: #0284c7;
+    --sky-light: #f0f9ff;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .pg-wrap {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 24px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--text-primary);
+    border-radius: var(--radius-xl);
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -50px; top: -50px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: var(--green); opacity: 0.10; pointer-events: none;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 6px;
+  }
+  .hero h1 { font-size: 26px; font-weight: 600; color: #fff; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .hero-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .session-badge {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 30px;
+    font-size: 13px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .session-badge.live {
+    background: rgba(22,163,74,0.15);
+    border: 1px solid rgba(134,239,172,0.3);
+    color: var(--green-mid);
+  }
+  .session-badge.inactive {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.45);
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green-mid);
+    animation: pulse-dot 1.6s ease-in-out infinite;
+  }
+  .session-badge.inactive .live-dot {
+    background: rgba(255,255,255,0.3);
+    animation: none;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.75); }
+  }
+
+  /* ── Two-column live layout ── */
+  .live-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 16px;
+    align-items: start;
+  }
+
+  /* ── Card shell ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-body { padding: 24px; }
+  .card-header-bar {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-soft);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .card-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .icon-green { background: var(--green-light); color: var(--green); }
+  .icon-teal  { background: var(--teal-light);  color: var(--teal);  }
+  .icon-sky   { background: var(--sky-light);   color: var(--sky);   }
+  .card-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+  .card-sub   { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+
+  /* ── Video panel ── */
+  .video-panel {
+    background: #0d0f10;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .video-topbar {
+    padding: 14px 20px;
+    background: #161a1d;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .video-session-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .video-instructor { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  .video-live-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 20px;
+    background: rgba(22,163,74,0.15); border: 1px solid rgba(134,239,172,0.25);
+    font-size: 11px; font-weight: 600; color: #86efac;
+    flex-shrink: 0;
+  }
+  /* The "screen" */
+  .video-screen {
+    height: 260px;
+    display: flex; align-items: center; justify-content: center;
+    background: #0a0c0d;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-screen video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+  .video-screen video.hidden { display: none; }
+  .video-screen-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.18); text-align: center;
+  }
+  .video-screen-placeholder svg { opacity: 0.4; }
+  .video-screen-placeholder p { font-size: 13px; line-height: 1.5; }
+  /* Scanline texture overlay */
+  .video-screen::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 3px,
+      rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+  }
+  /* Device controls bar */
+  .video-controls {
+    padding: 14px 20px;
+    background: #161a1d;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .device-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: var(--radius-md);
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    cursor: pointer; transition: background 0.15s, border-color 0.15s;
+    text-align: left;
+  }
+  .device-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); }
+  .device-btn.active {
+    background: rgba(13,148,136,0.15);
+    border-color: rgba(13,148,136,0.35);
+  }
+  .device-btn-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.06); flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .device-btn.active .device-btn-icon { background: rgba(13,148,136,0.25); }
+  .device-btn-icon svg { color: rgba(255,255,255,0.4); transition: color 0.15s; }
+  .device-btn.active .device-btn-icon svg { color: var(--teal-mid); }
+  .device-btn-label { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
+  .device-btn-state { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); margin-top: 1px; transition: color 0.15s; }
+  .device-btn.active .device-btn-state { color: var(--teal-mid); }
+
+  /* ── Right sidebar ── */
+  .right-col { display: flex; flex-direction: column; gap: 14px; }
+
+  /* Attendance stats */
+  .stat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding: 0 24px 20px;
+  }
+  .stat-box {
+    background: var(--bg); border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md); padding: 14px;
+  }
+  .stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-tertiary); margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 600; color: var(--text-primary); line-height: 1; }
+  .stat-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* Participation bar */
+  .participation-block { padding: 0 24px 24px; }
+  .participation-label-row {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;
+  }
+  .participation-pct { font-weight: 600; color: var(--text-primary); }
+  .progress-track {
+    height: 6px; background: var(--bg); border-radius: 6px;
+    overflow: hidden; border: 1px solid var(--border-soft);
+  }
+  .progress-fill {
+    height: 100%; border-radius: 6px;
+    background: var(--green);
+    transition: width 0.4s ease;
+  }
+  .progress-fill.warn { background: var(--amber); }
+  .participation-note { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.5; }
+
+  /* Attendance form */
+  .attendance-form { padding: 0 24px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .device-toggles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .toggle-btn {
+    padding: 12px; border-radius: var(--radius-md);
+    border: 1px solid var(--border); background: var(--bg);
+    cursor: pointer; text-align: left; transition: background 0.15s, border-color 0.15s;
+  }
+  .toggle-btn:hover { background: var(--surface); border-color: #c7c4be; }
+  .toggle-btn.active { background: var(--teal-light); border-color: var(--teal-mid); }
+  .toggle-btn-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-tertiary); }
+  .toggle-btn-state { font-size: 15px; font-weight: 600; color: var(--text-secondary); margin-top: 4px; transition: color 0.15s; }
+  .toggle-btn.active .toggle-btn-state { color: var(--teal); }
+
+  .btn-mark {
+    width: 100%; padding: 12px;
+    background: var(--teal); color: #fff;
+    border: none; border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-mark:hover { background: var(--teal-dark); }
+  .btn-mark:active { transform: scale(0.98); }
+  .btn-mark:disabled { background: var(--border); color: var(--text-tertiary); cursor: not-allowed; }
+  .form-note { font-size: 12px; color: var(--text-tertiary); text-align: center; line-height: 1.5; }
+
+  /* Already recorded */
+  .attendance-confirmed {
+    margin: 0 24px 24px;
+    background: var(--green-light);
+    border: 1px solid var(--green-mid);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .attendance-confirmed svg { color: var(--green); flex-shrink: 0; }
+  .attendance-confirmed p { font-size: 13px; font-weight: 500; color: var(--green); }
+
+  /* ── Inactive / no session ── */
+  .no-session {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-xl); padding: 72px 24px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; box-shadow: var(--shadow-sm);
+  }
+  .no-session-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; color: var(--text-tertiary);
+  }
+  .no-session h3 { font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+  .no-session p { font-size: 13px; color: var(--text-secondary); max-width: 360px; line-height: 1.65; }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .live-grid { grid-template-columns: 1fr; }
+    .right-col { flex-direction: column; }
+  }
+  @media (max-width: 560px) {
+    .pg-wrap { padding: 16px 14px 40px; gap: 16px; }
+    .hero { padding: 22px 20px; }
+    .hero h1 { font-size: 22px; }
+    .video-controls { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<div class="pg-wrap">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Classroom</p>
+      <h1>Live Class</h1>
+      <p class="hero-desc">Join live sessions and mark your attendance when your instructor opens class.</p>
+    </div>
+    {% if active_attendance %}
+    <span class="session-badge live">
+      <span class="live-dot"></span>
+      Session active
+    </span>
+    {% else %}
+    <span class="session-badge inactive">
+      <span class="live-dot"></span>
+      No active session
+    </span>
+    {% endif %}
+  </section>
+
+  <!-- ── Active session ── -->
+  {% if active_attendance %}
+  <div class="live-grid">
+
+    <!-- Left: Video panel -->
+    <div class="video-panel">
+      <div class="video-topbar">
+        <div>
+          <div class="video-session-name">
+            {{ cohort_name }}{% if active_attendance.module %} — {{ active_attendance.module.name }}{% else %} — General Session{% endif %}
+          </div>
+          <div class="video-instructor">
+            Hosted by {{ active_attendance.instructor.first_name }} {{ active_attendance.instructor.last_name }}
+          </div>
+        </div>
+        <span class="video-live-chip">
+          <svg width="7" height="7" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+          LIVE
+        </span>
+      </div>
+
+      <div class="video-screen">
+        <div class="video-screen-placeholder" id="video-placeholder">
+          <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+          <p>Video stream will appear here<br>when the session begins</p>
+        </div>
+        <video id="local-video" autoplay muted playsinline class="hidden"></video>
+        <video id="remote-video" autoplay playsinline class="hidden"></video>
+        <audio id="remote-audio" autoplay></audio>
+      </div>
+
+      <!-- Device controls (visual, reflects toggle state) -->
+      <div class="video-controls">
+        <div class="device-btn" id="vc-camera">
+          <div class="device-btn-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+          </div>
+          <div>
+            <div class="device-btn-label">Camera</div>
+            <div class="device-btn-state" id="vc-camera-state">Off</div>
+          </div>
+        </div>
+        <div class="device-btn" id="vc-mic">
+          <div class="device-btn-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </div>
+          <div>
+            <div class="device-btn-label">Microphone</div>
+            <div class="device-btn-state" id="vc-mic-state">Off</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right col: stats + attendance -->
+    <div class="right-col">
+
+      <!-- Attendance stats card -->
+      <div class="card">
+        <div class="card-header-bar">
+          <div class="card-icon icon-green">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div>
+            <div class="card-title">Attendance</div>
+            <div class="card-sub">This session</div>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-label">Present</div>
+            <div class="stat-value">{{ attendance_present_count }}</div>
+            <div class="stat-sub">of {{ attendance_total_count }}</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Required</div>
+            <div class="stat-value">60<span style="font-size:14px;font-weight:500;">%</span></div>
+            <div class="stat-sub">participation</div>
+          </div>
+        </div>
+
+        <div class="participation-block">
+          <div class="participation-label-row">
+            <span>Your participation</span>
+            <span class="participation-pct"><span id="part-pct">{{ participation_percent }}</span>%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill {% if participation_percent < 60 %}warn{% endif %}"
+                 id="part-bar"
+                 style="width: {{ participation_percent }}%">
+            </div>
+          </div>
+          <p class="participation-note">Camera or microphone must be active for attendance to count.</p>
+        </div>
+
+        <!-- Already recorded -->
+        {% if attendance_record %}
+        <div class="attendance-confirmed">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <p>Your attendance is recorded for this session.</p>
+        </div>
+
+        <!-- Form to mark attendance -->
+        {% else %}
+        <form method="post" id="attendance-form" class="attendance-form">
+          {% csrf_token %}
+          <input type="hidden" name="camera_on" id="camera_on" value="false">
+          <input type="hidden" name="mic_on"    id="mic_on"    value="false">
+
+          <div class="device-toggles">
+            <button type="button" id="toggle-camera" class="toggle-btn {% if camera_on %}active{% endif %}">
+              <div class="toggle-btn-label">Camera</div>
+              <div class="toggle-btn-state" id="camera-state">{% if camera_on %}On{% else %}Off{% endif %}</div>
+            </button>
+            <button type="button" id="toggle-mic" class="toggle-btn {% if mic_on %}active{% endif %}">
+              <div class="toggle-btn-label">Mic</div>
+              <div class="toggle-btn-state" id="mic-state">{% if mic_on %}On{% else %}Off{% endif %}</div>
+            </button>
+          </div>
+
+          <button type="submit" class="btn-mark" id="mark-btn">
+            Mark present
+          </button>
+          <p class="form-note">You must enable camera or mic before marking attendance.</p>
+        </form>
+        {% endif %}
+
+      </div>
+      <!-- end attendance card -->
+
+    </div>
+  </div>
+
+  <!-- ── No active session ── -->
+  {% else %}
+  <div class="no-session">
+    <div class="no-session-icon">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <h3>No active session</h3>
+    <p>Your instructor hasn't opened attendance yet. This page will update automatically when a live class begins.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+<script>
+(function () {
+  /* Initial state from Django context */
+  let cameraOn = {{ camera_on|yesno:'true,false' }};
+  let micOn    = {{ mic_on|yesno:'true,false' }};
+  const sessionId = '{{ active_attendance.id|default:"" }}';
+
+  /* Form elements */
+  const toggleCamera  = document.getElementById('toggle-camera');
+  const toggleMic     = document.getElementById('toggle-mic');
+  const cameraState   = document.getElementById('camera-state');
+  const micState      = document.getElementById('mic-state');
+  const cameraInput   = document.getElementById('camera_on');
+  const micInput      = document.getElementById('mic_on');
+  const partBar       = document.getElementById('part-bar');
+  const partPct       = document.getElementById('part-pct');
+  const markBtn       = document.getElementById('mark-btn');
+
+  /* Video panel mirror elements */
+  const vcCamera      = document.getElementById('vc-camera');
+  const vcCameraState = document.getElementById('vc-camera-state');
+  const vcMic         = document.getElementById('vc-mic');
+  const vcMicState    = document.getElementById('vc-mic-state');
+
+  /* WebRTC state */
+  let pc = null;
+  let localStream = null;
+  const videoScreen = document.querySelector('.video-screen');
+
+  /* Sync UI to state */
+  function sync () {
+    /* Form toggle buttons */
+    if (toggleCamera) {
+      toggleCamera.classList.toggle('active', cameraOn);
+      cameraState.textContent = cameraOn ? 'On' : 'Off';
+      cameraInput.value = cameraOn ? 'true' : 'false';
+    }
+    if (toggleMic) {
+      toggleMic.classList.toggle('active', micOn);
+      micState.textContent = micOn ? 'On' : 'Off';
+      micInput.value = micOn ? 'true' : 'false';
+    }
+
+    /* Video panel mirror */
+    if (vcCamera) {
+      vcCamera.classList.toggle('active', cameraOn);
+      vcCameraState.textContent = cameraOn ? 'On' : 'Off';
+    }
+    if (vcMic) {
+      vcMic.classList.toggle('active', micOn);
+      vcMicState.textContent = micOn ? 'On' : 'Off';
+    }
+
+    /* Participation meter */
+    const pct = (cameraOn || micOn) ? 60 : 0;
+    if (partBar) {
+      partBar.style.width = pct + '%';
+      partBar.classList.toggle('warn', pct < 60);
+    }
+    if (partPct) partPct.textContent = pct;
+
+    /* Submit button: only enabled when at least one device is on */
+    if (markBtn) markBtn.disabled = !(cameraOn || micOn);
+  }
+
+  /* Initialize WebRTC when devices are enabled */
+  async function initWebRTC() {
+    if (pc) return; // Already initialized
+    
+    try {
+      /* Request user media with current device selections */
+      const constraints = {
+        video: cameraOn,
+        audio: micOn,
+      };
+      
+      if (!cameraOn && !micOn) {
+        console.log('Both devices disabled, skipping WebRTC init');
+        return;
+      }
+
+      localStream = await navigator.mediaDevices.getUserMedia(constraints);
+      
+      /* Create RTCPeerConnection */
+      pc = new RTCPeerConnection({
+        iceServers: [
+          { urls: 'stun:stun.l.google.com:19302' },
+          { urls: 'stun:stun1.l.google.com:19302' },
+        ]
+      });
+
+      const localVideoEl = document.getElementById('local-video');
+      const remoteVideoEl = document.getElementById('remote-video');
+      const remoteAudioEl = document.getElementById('remote-audio');
+      const videoPlaceholder = document.getElementById('video-placeholder');
+      const remoteStream = new MediaStream();
+
+      if (remoteVideoEl) {
+        remoteVideoEl.srcObject = remoteStream;
+      }
+      if (remoteAudioEl) {
+        remoteAudioEl.srcObject = remoteStream;
+      }
+
+      /* Add local stream tracks to connection */
+      for (const track of localStream.getTracks()) {
+        pc.addTrack(track, localStream);
+      }
+
+      if (localVideoEl) {
+        localVideoEl.srcObject = localStream;
+        localVideoEl.classList.remove('hidden');
+      }
+      if (videoPlaceholder) {
+        videoPlaceholder.style.display = 'none';
+      }
+
+      /* Handle remote stream (from instructor/other participants) */
+      pc.ontrack = (event) => {
+        console.log('Remote track received:', event.track.kind);
+        remoteStream.addTrack(event.track);
+        if (remoteVideoEl && event.track.kind === 'video') {
+          remoteVideoEl.classList.remove('hidden');
+        }
+      };
+
+      /* Handle connection state changes */
+      pc.onconnectionstatechange = () => {
+        console.log('WebRTC connection state:', pc.connectionState);
+      };
+
+      /* Create and send offer */
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      const response = await fetch('{% url "student:webrtc_offer" %}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+        body: JSON.stringify({
+          sdp: offer.sdp,
+          type: offer.type,
+          session_id: sessionId,
+        })
+      });
+
+      const answer = await response.json();
+      if (answer.error) {
+        console.error('Server error:', answer.error);
+        return;
+      }
+
+      /* Set remote description from server */
+      await pc.setRemoteDescription(new RTCSessionDescription({
+        sdp: answer.sdp,
+        type: answer.type,
+      }));
+
+      /* Handle ICE candidates */
+      pc.onicecandidate = (event) => {
+        if (event.candidate) {
+          fetch('{% url "student:webrtc_ice_candidate" %}', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+            body: JSON.stringify({
+              candidate: event.candidate,
+              session_id: sessionId,
+            })
+          });
+        }
+      };
+
+    } catch (err) {
+      console.error('WebRTC initialization failed:', err);
+      if (err.name === 'NotAllowedError') {
+        alert('Please allow camera/microphone access.');
+      }
+    }
+  }
+
+  /* Clean up WebRTC when form submits or page unloads */
+  async function closeWebRTC() {
+    if (pc) {
+      await pc.close();
+      pc = null;
+    }
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+      localStream = null;
+    }
+    
+    if (sessionId) {
+      fetch('{% url "student:webrtc_close" %}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+        body: JSON.stringify({ session_id: sessionId })
+      });
+    }
+  }
+
+  /* Toggle handlers */
+  if (toggleCamera) {
+    toggleCamera.addEventListener('click', function () { 
+      cameraOn = !cameraOn; 
+      sync();
+      if (cameraOn || micOn) initWebRTC();
+    });
+  }
+  if (toggleMic) {
+    toggleMic.addEventListener('click', function () { 
+      micOn = !micOn; 
+      sync();
+      if (cameraOn || micOn) initWebRTC();
+    });
+  }
+
+  /* Form submission */
+  const form = document.getElementById('attendance-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      closeWebRTC();
+      form.submit();
+    });
+  }
+
+  /* Cleanup on page unload */
+  window.addEventListener('beforeunload', closeWebRTC);
+
+  /* Helper to get CSRF token */
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  /* Run once on load */
+  sync();
+
+  /* Initialize WebRTC if devices are already enabled */
+  if ((cameraOn || micOn) && sessionId) {
+    initWebRTC();
+  }
+
+  /* ── Auto-refresh when no active session ── */
+  {% if not active_attendance %}
+  setTimeout(function () { location.reload(); }, 30000);
+  {% endif %}
+})();
+</script>
+
+{% endblock %}

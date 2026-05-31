@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-slate-900 text-white shadow-lg">
+            <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Super Admin Portal</p>
+                    <h1 class="text-4xl font-bold">System overview</h1>
+                </div>
+                <a href="/auth/logout/" class="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-slate-900 hover:bg-yellow-300">Sign Out</a>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-6 py-10 space-y-8">
+            <section class="grid gap-6 md:grid-cols-4">
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Partner schools</p>
+                    <p class="mt-4 text-4xl font-bold text-slate-900">{{ partner_schools }}</p>
+                </div>
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Total students</p>
+                    <p class="mt-4 text-4xl font-bold text-emerald-700">{{ total_students }}</p>
+                </div>
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Platform health</p>
+                    <p class="mt-4 text-4xl font-bold text-slate-900">{{ platform_health }}</p>
+                </div>
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Next audit</p>
+                    <p class="mt-4 text-4xl font-bold text-slate-900">{{ next_system_audit }}</p>
+                </div>
+            </section>
+
+            <section class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-900">Executive summary</h2>
+                <p class="mt-4 text-slate-600">Monitor school adoption, student outcomes, and system-wide performance from one central command center.</p>
+                <div class="mt-6 grid gap-4 md:grid-cols-3">
+                    <div class="rounded-3xl bg-slate-50 p-5">Policy compliance</div>
+                    <div class="rounded-3xl bg-slate-50 p-5">School onboarding</div>
+                    <div class="rounded-3xl bg-slate-50 p-5">Platform uptime</div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

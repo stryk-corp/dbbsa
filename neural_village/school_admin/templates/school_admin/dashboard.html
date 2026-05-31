@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-emerald-800 text-white shadow-lg">
+            <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.3em] text-emerald-200">School Admin Portal</p>
+                    <h1 class="text-4xl font-bold">{{ school_name }}</h1>
+                </div>
+                <a href="/auth/logout/" class="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-emerald-900 hover:bg-yellow-300">Sign Out</a>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-6 py-10 space-y-8">
+            <section class="grid gap-6 md:grid-cols-3">
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Active cohorts</p>
+                    <p class="mt-4 text-4xl font-bold text-emerald-700">{{ active_cohorts }}</p>
+                </div>
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Online devices</p>
+                    <p class="mt-4 text-4xl font-bold text-slate-700">{{ hardware_online }}</p>
+                </div>
+                <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Support tickets</p>
+                    <p class="mt-4 text-4xl font-bold text-emerald-700">{{ open_tickets }}</p>
+                </div>
+            </section>
+
+            <section class="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-900">School health</h2>
+                <p class="mt-4 text-slate-600">Monitor cohort progress, equipment status, and compliance metrics in one place.</p>
+                <div class="mt-6 grid gap-4 md:grid-cols-3">
+                    <div class="rounded-3xl bg-slate-50 p-5">Enrollment trends</div>
+                    <div class="rounded-3xl bg-slate-50 p-5">Hardware checks</div>
+                    <div class="rounded-3xl bg-slate-50 p-5">Compliance status</div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
