@@ -38,8 +38,11 @@ sentry-sdk==1.39.1
 
 # Utils
 python-decouple==3.8
+whitenoise==6.5.0
+dj-database-url==1.0.0
 Pillow==12.2.0  # Image processing
 requests==2.31.0
+gunicorn==21.2.0
 
 # Development
 django-debug-toolbar==4.2.0

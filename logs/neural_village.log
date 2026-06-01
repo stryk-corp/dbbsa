@@ -1370,3 +1370,23 @@ INFO 2026-05-31 12:08:55,400 autoreload 12844 1056 Watching for file changes wit
 INFO 2026-05-31 12:10:38,669 autoreload 12844 1056 C:\Users\HP\Desktop\David Bedford\neural_village\urls.py changed, reloading.
 INFO 2026-05-31 12:10:41,553 autoreload 9484 6020 Watching for file changes with StatReloader
 INFO 2026-05-31 12:17:55,932 autoreload 12600 3112 Watching for file changes with StatReloader
+INFO 2026-06-01 01:05:38,323 autoreload 10592 14824 Watching for file changes with StatReloader
+WARNING 2026-06-01 01:33:49,404 log 10592 16820 Not Found: /favicon.ico
+INFO 2026-06-01 01:59:54,909 autoreload 10592 14824 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-06-01 02:00:16,164 autoreload 18208 2880 Watching for file changes with StatReloader
+INFO 2026-06-01 02:00:52,425 autoreload 18208 2880 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-06-01 02:01:01,430 autoreload 11572 2364 Watching for file changes with StatReloader
+INFO 2026-06-01 02:02:06,878 autoreload 11572 2364 C:\Users\HP\Desktop\David Bedford\neural_village\urls.py changed, reloading.
+INFO 2026-06-01 02:02:11,046 autoreload 1792 17724 Watching for file changes with StatReloader
+INFO 2026-06-01 02:06:05,118 autoreload 1792 17724 C:\Users\HP\Desktop\David Bedford\neural_village\core\models.py changed, reloading.
+INFO 2026-06-01 02:06:10,129 autoreload 18384 3084 Watching for file changes with StatReloader
+INFO 2026-06-01 02:14:36,683 autoreload 18384 3084 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-06-01 02:14:40,017 autoreload 16988 16592 Watching for file changes with StatReloader
+WARNING 2026-06-01 02:15:29,720 log 16988 17372 Bad Request: /apply/pay/
+WARNING 2026-06-01 02:25:35,889 log 16988 15936 Bad Request: /apply/pay/
+INFO 2026-06-01 02:25:56,709 autoreload 16988 16592 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-01 02:26:00,281 autoreload 7584 8480 Watching for file changes with StatReloader
+INFO 2026-06-01 02:26:09,553 autoreload 7584 8480 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-01 02:26:13,024 autoreload 15696 18200 Watching for file changes with StatReloader
+INFO 2026-06-01 02:26:20,089 autoreload 15696 18200 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-01 02:30:47,084 autoreload 17064 8068 Watching for file changes with StatReloader

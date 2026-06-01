@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils import timezone
+import uuid
 
 from .models import (
     School,
@@ -17,6 +19,9 @@ from .models import (
     HardwareAsset,
     Lab_Project,
     Lab_Submission,
+    Invoice,
+    TransactionWebhookLog,
+    WaitlistEntry,
 )
 
 
@@ -143,6 +148,99 @@ class ParentAdmin(admin.ModelAdmin):
     search_fields = ('first_name', 'last_name', 'user__username', 'user__email', 'phone')
     raw_id_fields = ('user', 'children')
     readonly_fields = ('created_at', 'updated_at')
+
+
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ('id', 'student', 'payer_user', 'amount', 'currency', 'status', 'due_date')
+    list_filter = ('status', 'currency', 'gateway')
+    search_fields = (
+        'student__first_name',
+        'student__last_name',
+        'payer_user__username',
+        'payer_user__email',
+        'reference_code',
+    )
+    raw_id_fields = ('student', 'payer_user')
+    readonly_fields = ('created_at', 'updated_at')
+
+
+class TransactionWebhookLogAdmin(admin.ModelAdmin):
+    list_display = ('invoice', 'gateway', 'reference_code', 'processed_at', 'created_at')
+    list_filter = ('gateway',)
+    search_fields = ('invoice__id', 'reference_code')
+    readonly_fields = ('created_at', 'processed_at', 'payload_dump')
+    raw_id_fields = ('invoice',)
+
+
+class WaitlistEntryAdmin(admin.ModelAdmin):
+    list_display = ('email', 'full_name', 'role_requested', 'status', 'created_at')
+    list_filter = ('status', 'role_requested')
+    search_fields = ('email', 'full_name', 'payment_reference')
+    readonly_fields = ('created_at', 'processed_at', 'temp_token')
+    actions = ('provision_accounts', 'send_credentials_and_remove')
+
+    def provision_accounts(self, request, queryset):
+        from django.contrib.auth.models import User
+        from django.core.mail import send_mail
+        from django.conf import settings
+        from .models import User_Profile
+
+        created = 0
+        for entry in queryset:
+            if entry.status in ('PROVISIONED', 'APPROVED'):
+                continue
+            username = entry.email.split('@')[0]
+            user, created_flag = User.objects.get_or_create(username=username, defaults={'email': entry.email})
+            if created_flag:
+                user.set_password('dbbsa')
+                user.save()
+
+            # Create or update user profile
+            up, _ = User_Profile.objects.get_or_create(user=user, defaults={'role': (entry.role_requested or 'student'), 'digital_id': f'NV-{str(uuid.uuid4())[:8]}'})
+            if not created_flag:
+                up.role = (entry.role_requested or up.role)
+                if not up.digital_id:
+                    up.digital_id = f'NV-{str(uuid.uuid4())[:8]}'
+                up.save()
+
+            entry.status = 'APPROVED'
+            entry.processed_at = timezone.now()
+            entry.save()
+            created += 1
+
+        self.message_user(request, f"Provisioned {created} account(s).")
+    provision_accounts.short_description = 'Provision accounts for selected waitlist entries'
+
+    def send_credentials_and_remove(self, request, queryset):
+        from django.contrib.auth.models import User
+        from django.core.mail import send_mail
+        from django.conf import settings
+
+        sent = 0
+        for entry in queryset:
+            try:
+                username = entry.email.split('@')[0]
+                user = User.objects.get(username=username)
+            except Exception:
+                continue
+
+            subject = 'DBBSA — Your account credentials'
+            message = (
+                f"Hello {entry.full_name or entry.email},\n\n"
+                f"Your account has been created.\nUsername: {user.username}\nPassword: dbbsa\n\n"
+                "Please login at: https://www.neuroscienceacademy.edu.ng/auth/login/\n\n"
+                "Regards,\nDBBSA Team"
+            )
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@dbbsa.com', [entry.email], fail_silently=True)
+
+            # mark as provisioned and remove from waitlist
+            entry.status = 'PROVISIONED'
+            entry.processed_at = timezone.now()
+            entry.save()
+            sent += 1
+
+        self.message_user(request, f"Sent credentials to {sent} applicant(s) and removed them from the waitlist.")
+    send_credentials_and_remove.short_description = 'Send credentials to applicants and remove from waitlist'
 
 
 class CohortInline(admin.TabularInline):
@@ -274,3 +372,5 @@ admin.site.register(CBT_Session, CBTSessionAdmin)
 admin.site.register(HardwareAsset, HardwareAssetAdmin)
 admin.site.register(Lab_Project, LabProjectAdmin)
 admin.site.register(Lab_Submission, LabSubmissionAdmin)
+admin.site.register(Invoice, InvoiceAdmin)
+admin.site.register(TransactionWebhookLog, TransactionWebhookLogAdmin)

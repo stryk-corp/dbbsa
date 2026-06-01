@@ -233,7 +233,27 @@ python manage.py migrate neural_village 0001
 
 ---
 
-## Loading Sample Data
+## Deploying on Render
+
+Render can deploy this project automatically using `render.yaml`.
+
+1. Push this repo to GitHub.
+2. Add the repo to Render and choose the `main` branch.
+3. Render will read `render.yaml` and create a Python web service plus a Postgres database.
+4. In Render service settings, configure environment variables:
+   - `DJANGO_SECRET_KEY`
+   - `DEBUG=False`
+   - `BASE_PUBLIC_URL=https://<your-service>.onrender.com`
+   - `PAYMENT_GATEWAY=paystack`
+   - `PAYSTACK_SECRET_KEY`
+   - `PAYSTACK_PUBLIC_KEY`
+   - `DATABASE_URL` (provided automatically by Render Postgres)
+   - `ALLOWED_HOSTS=<your-service>.onrender.com`
+5. Deploy. Render will install dependencies, collect static files, and start Gunicorn.
+
+---
+
+# Loading Sample Data
 
 ```bash
 # Create fixture with sample schools, students, cohorts

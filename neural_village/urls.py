@@ -39,6 +39,8 @@ urlpatterns_public = [
     
     # Public API endpoints
     path('api/v1/', include('neural_village.api.public_urls', namespace='api_public')),
+    # Application flow (public)
+    path('apply/', include('neural_village.api.apply_urls', namespace='apply')),
 ]
 
 # School Admin Portal URLs

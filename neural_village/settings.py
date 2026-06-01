@@ -12,22 +12,20 @@ Key Features:
 import os
 from pathlib import Path
 from datetime import timedelta
+from decouple import Config, RepositoryEnv
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+config = Config(RepositoryEnv(BASE_DIR / '.env'))
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-key-change-in-production')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+SECRET_KEY = config('DJANGO_SECRET_KEY', default='dev-secret-key-change-in-production')
+DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = [
-    'dbbsa.com', 
-    'www.dbbsa.com',
-    'admin.dbbsa.com',
-    'sys.neuralvillage.com',
-    'portal.neuralvillage.com',
-    'localhost',
-    '127.0.0.1',
-    'lvh.me',
-    '.lvh.me',
-    'portal.lvh.me',
+    host.strip() for host in config(
+        'ALLOWED_HOSTS',
+        default='localhost,127.0.0.1,lvh.me,.lvh.me,dbbsa.com,portal.neuralvillage.com,admin.dbbsa.com,sys.neuralvillage.com'
+    ).split(',')
+    if host.strip()
 ]
 
 # ============================================
@@ -66,6 +64,7 @@ INSTALLED_APPS = [
 # ============================================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -106,20 +105,25 @@ WSGI_APPLICATION = 'neural_village.wsgi.application'
 # ============================================
 # DATABASE
 # ============================================
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'neural_village'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+if config('DATABASE_URL', default=''):
+    DATABASES = {
+        'default': dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='neural_village'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='postgres'),
+            'HOST': config('DB_HOST', default='localhost'),
+            'PORT': config('DB_PORT', default='5432'),
+        }
+    }
 
 # Development convenience: fallback to SQLite when DEBUG is True.
 # This prevents requiring psycopg2/PostgreSQL for local development.
-if DEBUG:
+if DEBUG and not config('DATABASE_URL', default=''):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -201,6 +205,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -264,3 +269,13 @@ CSRF_TRUSTED_ORIGINS = [
     'http://lvh.me:8000',
     'http://portal.lvh.me:8000',
 ]
+
+# ============================================
+# PAYMENT GATEWAY CONFIGURATION
+# ============================================
+PAYMENT_GATEWAY = config('PAYMENT_GATEWAY', default='paystack').upper()
+PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
+PAYSTACK_API_BASE_URL = config('PAYSTACK_API_BASE_URL', default='https://api.paystack.co')
+REMITA_SECRET_KEY = config('REMITA_SECRET_KEY', default='')
+BASE_PUBLIC_URL = config('BASE_PUBLIC_URL', default='http://localhost:8000')

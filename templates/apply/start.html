@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto px-6 py-16">
+  <h1 class="text-3xl font-bold">Apply to DBBSA</h1>
+  <p class="mt-4">Application fee: ₦{{ fee_ngn }} — pay in your preferred currency.</p>
+  <form method="post" action="{% url 'apply:initialize_application_payment' %}" class="mt-6">
+    {% csrf_token %}
+    <label class="block">Email
+      <input type="email" name="email" required class="mt-1 block w-full border rounded p-2" />
+    </label>
+    <label class="block mt-4">Currency
+      <select name="currency" class="mt-1 block w-full border rounded p-2">
+        {% for c in currencies %}
+          <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button type="submit" class="mt-6 rounded bg-amber-700 text-white px-6 py-3">Pay & Continue</button>
+  </form>
+</div>
+{% endblock %}

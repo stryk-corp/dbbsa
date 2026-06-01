@@ -221,6 +221,99 @@ class Parent(models.Model):
         return f"Guardian: {self.first_name} {self.last_name}"
 
 
+class Invoice(models.Model):
+    GATEWAY_CHOICES = [
+        ('PAYSTACK', 'Paystack'),
+        ('REMITA', 'Remita'),
+    ]
+    STATUS_CHOICES = [
+        ('UNPAID', 'Unpaid'),
+        ('PAID', 'Paid'),
+        ('FAILED', 'Failed'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    payer_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='invoices', null=True, blank=True)
+    payer_email = models.EmailField(blank=True, null=True, help_text='Email used for payment when payer is not yet a system user')
+    student = models.ForeignKey('Student', on_delete=models.CASCADE, related_name='invoices', null=True, blank=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=4500.00)
+    currency = models.CharField(max_length=3, default='NGN')
+    description = models.CharField(max_length=255, default='KNSB 2026 Term Tuition')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='UNPAID')
+    due_date = models.DateField(default=timezone.now)
+    gateway = models.CharField(max_length=20, choices=GATEWAY_CHOICES, default='PAYSTACK')
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['due_date']),
+            models.Index(fields=['payer_user']),
+        ]
+
+    def __str__(self):
+        return f"Invoice {self.id} - {self.student} - {self.status}"
+
+
+class WaitlistEntry(models.Model):
+    STATUS_CHOICES = [
+        ('PENDING', 'Pending'),
+        ('AWAITING_DETAILS', 'Awaiting Details'),
+        ('APPROVED', 'Approved'),
+        ('REJECTED', 'Rejected'),
+        ('PROVISIONED', 'Provisioned'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    full_name = models.CharField(max_length=255, blank=True)
+    email = models.EmailField()
+    phone = models.CharField(max_length=30, blank=True)
+    dob = models.DateField(null=True, blank=True)
+    role_requested = models.CharField(max_length=32, blank=True)
+    target_school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='PENDING')
+    payment_reference = models.CharField(max_length=150, blank=True)
+    invoice = models.ForeignKey(Invoice, on_delete=models.SET_NULL, null=True, blank=True, related_name='waitlist_entries')
+    temp_token = models.UUIDField(default=uuid.uuid4, editable=False)
+    temp_token_expires = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    processed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['email']),
+            models.Index(fields=['payment_reference']),
+        ]
+
+    def __str__(self):
+        return f"WaitlistEntry {self.email} - {self.status}"
+
+
+class TransactionWebhookLog(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='webhook_logs')
+    gateway = models.CharField(max_length=20, choices=Invoice.GATEWAY_CHOICES)
+    reference_code = models.CharField(max_length=150)
+    payload_dump = models.JSONField(default=dict, blank=True)
+    processed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['gateway']),
+            models.Index(fields=['reference_code']),
+        ]
+
+    def __str__(self):
+        return f"{self.gateway} webhook for Invoice {self.invoice.id}"
+
+
 class Instructor(models.Model):
     """Instructor/Teacher records"""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
