@@ -13,6 +13,8 @@ services:
         value: '1'
       - key: DJANGO_SETTINGS_MODULE
         value: neural_village.settings
+    databases:
+      - name: dbbsa-db
   - type: postgres
     name: dbbsa-db
     plan: starter
