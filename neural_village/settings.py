@@ -12,11 +12,10 @@ Key Features:
 import os
 from pathlib import Path
 from datetime import timedelta
-from decouple import Config, RepositoryEnv
+from decouple import config
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-config = Config(RepositoryEnv(BASE_DIR / '.env'))
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='dev-secret-key-change-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
