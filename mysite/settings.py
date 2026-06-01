@@ -28,7 +28,7 @@ DEBUG = True
 # Allow local development on localhost and any subdomain of lvh.me (resolves to 127.0.0.1).
 # Use subdomains like `admin.lvh.me:8000` and `lvh.me:8000` to keep cookies host-scoped
 # so admin and portal sessions do not collide.
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.lvh.me']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.lvh.me', '.dbbsa.onrender.com']
 
 
 # Application definition
