@@ -1,13 +1,10 @@
 services:
   - type: web
     name: dbbsa-django
-    env: python
-    plan: starter
     region: oregon
     branch: main
     autoDeploy: true
-    buildCommand: apt-get update && apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev && pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: python manage.py migrate --noinput && gunicorn neural_village.wsgi:application --bind 0.0.0.0:$PORT
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: PYTHONUNBUFFERED
         value: '1'
