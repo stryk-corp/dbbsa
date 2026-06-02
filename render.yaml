@@ -1,6 +1,7 @@
 services:
   - type: web
     name: dbbsa-django
+    env: docker
     region: oregon
     branch: main
     autoDeploy: true

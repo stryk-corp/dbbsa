@@ -3,6 +3,7 @@ FROM python:3.14-slim
 
 # Install system dependencies required for av (PyAV)
 RUN apt-get update && apt-get install -y \
+    build-essential \
     libavformat-dev \
     libavcodec-dev \
     libavdevice-dev \
