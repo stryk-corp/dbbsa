@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponseServerError
 
 from neural_village.core.models import Invoice, WaitlistEntry, School
 
@@ -45,6 +45,9 @@ def initialize_application_payment(request):
 
     # Initialize Paystack
     secret_key = settings.PAYSTACK_SECRET_KEY
+    if not secret_key:
+        return HttpResponseServerError('Payment gateway is not configured. Please contact support.')
+
     payload = {
         'email': email,
         'amount': int(amount * Decimal('100')),
@@ -56,10 +59,23 @@ def initialize_application_payment(request):
         },
         'callback_url': f"{settings.BASE_PUBLIC_URL}{reverse('apply:apply_continue')}",
     }
-    resp = requests.post(f"{settings.PAYSTACK_API_BASE_URL}/transaction/initialize", json=payload, headers={'Authorization': f'Bearer {secret_key}'}, timeout=15)
-    data = resp.json()
+
+    try:
+        resp = requests.post(
+            f"{settings.PAYSTACK_API_BASE_URL}/transaction/initialize",
+            json=payload,
+            headers={'Authorization': f'Bearer {secret_key}'},
+            timeout=15,
+        )
+        data = resp.json()
+    except requests.exceptions.RequestException:
+        return HttpResponseServerError('Unable to reach the payment provider. Please try again later.')
+    except ValueError:
+        return HttpResponseServerError('Invalid response from payment provider.')
+
     if resp.status_code != 200 or not data.get('status'):
-        return HttpResponseBadRequest('Unable to initialize payment')
+        return HttpResponseBadRequest('Unable to initialize payment. Please check your payment details and try again.')
+
     return redirect(data['data']['authorization_url'])
 
 
@@ -85,25 +101,33 @@ def apply_continue(request):
     # verify with paystack using reference param if provided
     verify_url = f"{settings.PAYSTACK_API_BASE_URL}/transaction/verify/{reference}" if reference else None
     if verify_url:
-        resp = requests.get(verify_url, headers={'Authorization': f'Bearer {secret_key}'}, timeout=15)
-        data = resp.json()
+        try:
+            resp = requests.get(verify_url, headers={'Authorization': f'Bearer {secret_key}'}, timeout=15)
+            data = resp.json()
+        except requests.exceptions.RequestException:
+            return HttpResponseServerError('Unable to reach the payment provider. Please try again later.')
+        except ValueError:
+            return HttpResponseServerError('Invalid response from payment provider.')
+
         if resp.status_code == 200 and data.get('status') and data.get('data', {}).get('status') == 'success':
             metadata = data['data'].get('metadata', {})
             inv_id = metadata.get('invoice_id')
             try:
                 invoice = Invoice.objects.get(id=inv_id)
-            except Exception:
+            except Invoice.DoesNotExist:
                 invoice = None
-            # mark invoice paid
+
             if invoice:
                 invoice.status = 'PAID'
                 invoice.save(update_fields=['status'])
 
             # create waitlist entry in awaiting details state
-            wait = WaitlistEntry.objects.create(email=data['data'].get('customer', {}).get('email') or metadata.get('applicant_email'),
-                                                payment_reference=data['data'].get('reference') or reference,
-                                                invoice=invoice,
-                                                status='AWAITING_DETAILS')
+            wait = WaitlistEntry.objects.create(
+                email=data['data'].get('customer', {}).get('email') or metadata.get('applicant_email'),
+                payment_reference=data['data'].get('reference') or reference,
+                invoice=invoice,
+                status='AWAITING_DETAILS',
+            )
             # redirect user to secure details entry
             return redirect(reverse('apply:apply_details', kwargs={'token': str(wait.temp_token)}))
 
