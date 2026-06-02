@@ -12,6 +12,7 @@ Key Features:
 import os
 from pathlib import Path
 from datetime import timedelta
+from django.core.exceptions import ImproperlyConfigured
 from decouple import config
 import dj_database_url
 
@@ -104,25 +105,38 @@ WSGI_APPLICATION = 'neural_village.wsgi.application'
 # ============================================
 # DATABASE
 # ============================================
-if config('DATABASE_URL', default=''):
+DATABASE_URL = config('DATABASE_URL', default=None)
+DB_HOST = config('DB_HOST', default=None)
+DB_NAME = config('DB_NAME', default=None)
+DB_USER = config('DB_USER', default=None)
+DB_PASSWORD = config('DB_PASSWORD', default=None)
+DB_PORT = config('DB_PORT', default=None)
+
+if DATABASE_URL:
     DATABASES = {
-        'default': dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600)
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
 else:
+    if not DEBUG and not DB_HOST:
+        raise ImproperlyConfigured(
+            'DATABASE_URL or DB_HOST must be configured for production. '
+            'On Render, link the Postgres database service and ensure DATABASE_URL is available.'
+        )
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME', default='neural_village'),
-            'USER': config('DB_USER', default='postgres'),
-            'PASSWORD': config('DB_PASSWORD', default='postgres'),
-            'HOST': config('DB_HOST', default='localhost'),
-            'PORT': config('DB_PORT', default='5432'),
+            'NAME': DB_NAME or 'neural_village',
+            'USER': DB_USER or 'postgres',
+            'PASSWORD': DB_PASSWORD or 'postgres',
+            'HOST': DB_HOST or 'localhost',
+            'PORT': DB_PORT or '5432',
         }
     }
 
 # Development convenience: fallback to SQLite when DEBUG is True.
 # This prevents requiring psycopg2/PostgreSQL for local development.
-if DEBUG and not config('DATABASE_URL', default=''):
+if DEBUG and not DATABASE_URL and not DB_HOST:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
