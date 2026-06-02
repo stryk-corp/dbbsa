@@ -288,3 +288,13 @@ PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
 PAYSTACK_API_BASE_URL = config('PAYSTACK_API_BASE_URL', default='https://api.paystack.co')
 REMITA_SECRET_KEY = config('REMITA_SECRET_KEY', default='')
 BASE_PUBLIC_URL = config('BASE_PUBLIC_URL', default='http://localhost:8000')
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    if RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    wildcard_render = f'.{RENDER_EXTERNAL_HOSTNAME}'
+    if wildcard_render not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(wildcard_render)
+    if BASE_PUBLIC_URL == 'http://localhost:8000':
+        BASE_PUBLIC_URL = f'https://{RENDER_EXTERNAL_HOSTNAME}'

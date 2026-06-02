@@ -7,12 +7,15 @@ services:
     branch: main
     autoDeploy: true
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: gunicorn mysite.wsgi:application --bind 0.0.0.0:$PORT
+    startCommand: python manage.py migrate --noinput && gunicorn mysite.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHONUNBUFFERED
         value: '1'
       - key: DJANGO_SETTINGS_MODULE
         value: neural_village.settings
+      - key: ALLOWED_HOSTS
+        value: '*.onrender.com'
+    healthCheckPath: /
     databases:
       - name: dbbsa-db
   - type: postgres
