@@ -10,8 +10,16 @@ from django.db.models import Q
 from neural_village.auth.decorators import role_required
 from neural_village.core.models import AttendanceRecord, AttendanceSession, CBT_Quiz, CBT_Session, Module, Student
 from neural_village.student.models import ChatMessage
-from aiortc import RTCPeerConnection, RTCSessionDescription, VideoStreamTrack, AudioStreamTrack
-from av import VideoFrame
+
+try:
+    from aiortc import RTCPeerConnection, RTCSessionDescription, VideoStreamTrack, AudioStreamTrack
+    from av import VideoFrame
+except ImportError:
+    RTCPeerConnection = None
+    RTCSessionDescription = None
+    VideoStreamTrack = type('VideoStreamTrack', (), {})
+    AudioStreamTrack = type('AudioStreamTrack', (), {})
+    VideoFrame = None
 
 # Global peer connection storage for WebRTC sessions
 webrtc_peer_connections = {}

@@ -43,6 +43,8 @@ dj-database-url==1.0.0
 Pillow==12.2.0  # Image processing
 requests==2.31.0
 gunicorn==21.2.0
+aiortc==1.14.0
+av==14.0.0
 
 # Development
 django-debug-toolbar==4.2.0
