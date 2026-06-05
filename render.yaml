@@ -12,7 +12,7 @@ services:
       - key: DJANGO_SETTINGS_MODULE
         value: neural_village.settings
       - key: ALLOWED_HOSTS
-        value: '*.onrender.com'
+        value: '.onrender.com,admin.dbbsa.com,sys.neuralvillage.com,dbbsa.com,portal.neuralvillage.com'
     healthCheckPath: /
     databases:
       - name: dbbsa-db

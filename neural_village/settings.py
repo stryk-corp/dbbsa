@@ -20,13 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='dev-secret-key-change-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = [
-    host.strip() for host in config(
-        'ALLOWED_HOSTS',
-        default='localhost,127.0.0.1,lvh.me,.lvh.me,*.onrender.com,dbbsa.com,portal.neuralvillage.com,admin.dbbsa.com,sys.neuralvillage.com'
-    ).split(',')
-    if host.strip()
-]
+raw_allowed_hosts = config(
+    'ALLOWED_HOSTS',
+    default='localhost,127.0.0.1,lvh.me,.lvh.me,.onrender.com,dbbsa.com,portal.neuralvillage.com,admin.dbbsa.com,sys.neuralvillage.com'
+)
+ALLOWED_HOSTS = []
+for host in raw_allowed_hosts.split(','):
+    host = host.strip()
+    if not host:
+        continue
+    if host.startswith('*.'):
+        host = '.' + host[2:]
+    ALLOWED_HOSTS.append(host)
 
 # ============================================
 # INSTALLED APPS

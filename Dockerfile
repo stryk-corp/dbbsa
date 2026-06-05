@@ -31,6 +31,7 @@ COPY . .
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Run migrations and start gunicorn
+# Run migrations, ensure superuser exists, and start gunicorn
 CMD python manage.py migrate --noinput && \
+    python manage.py ensure_superuser && \
     gunicorn neural_village.wsgi:application --bind 0.0.0.0:$PORT
