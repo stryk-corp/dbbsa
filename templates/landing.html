@@ -38,19 +38,7 @@ body {
   background: var(--parchment);
   color: var(--ink-black);
   overflow-x: hidden;
-  cursor: none; 
-}
-
-/* ── Custom Cursor (Desktop Only) ── */
-#cursor { position: fixed; z-index: 9999; pointer-events: none; width: 8px; height: 8px; border-radius: 50%; background: var(--burgundy); transform: translate(-50%,-50%); transition: width 0.15s, height 0.15s; will-change: transform, width, height; }
-#cursor-ring { position: fixed; z-index: 9998; pointer-events: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(107,39,55,0.4); transform: translate(-50%,-50%); transition: left 0.1s linear, top 0.1s linear, width 0.3s, height 0.3s; will-change: left, top; }
-body:has(a:hover) #cursor { width: 14px; height: 14px; }
-body:has(a:hover) #cursor-ring { width: 46px; height: 46px; border-color: rgba(107,39,55,0.7); }
-
-/* Disable cursor on touch devices to restore native behavior */
-@media (pointer: coarse) {
-  body { cursor: auto; }
-  #cursor, #cursor-ring { display: none !important; }
+  cursor: auto;
 }
 
 /* ── Progress Bar ── */

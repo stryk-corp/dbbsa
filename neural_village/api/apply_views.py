@@ -1,21 +1,35 @@
 import json
+from datetime import timedelta
 from decimal import Decimal
 import requests
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponseBadRequest, HttpResponseServerError
+from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 
 from neural_village.core.models import Invoice, WaitlistEntry, School
+
+
+def _use_fake_payment():
+    return (
+        settings.DEBUG
+        and getattr(settings, 'PAYSTACK_FAKE', False)
+        and getattr(settings, 'PAYMENT_GATEWAY', '').upper() == 'PAYSTACK'
+)
 
 
 @require_http_methods(['GET'])
 def apply_start(request):
     # Simple apply start page where applicant provides an email and chooses currency
     currencies = getattr(settings, 'SUPPORTED_CURRENCIES', ['NGN', 'USD'])
-    context = {'currencies': currencies, 'fee_ngn': getattr(settings, 'APPLICATION_FEE_NGN', 4500)}
+    context = {
+        'currencies': currencies,
+        'fee_ngn': getattr(settings, 'APPLICATION_FEE_NGN', 4500),
+        'paystack_public_key': getattr(settings, 'PAYSTACK_PUBLIC_KEY', ''),
+    }
     return render(request, 'apply/start.html', context)
 
 
@@ -30,7 +44,16 @@ def initialize_application_payment(request):
     # Simple conversion — production should use a live FX provider
     rates = getattr(settings, 'EXCHANGE_RATES', {'NGN': 1, 'USD': Decimal('0.0025')})
     rate = Decimal(rates.get(currency, 1))
-    amount = (amount_naira * (Decimal('1') / rate)).quantize(Decimal('1.')) if currency != 'NGN' else amount_naira
+    amount = (
+        amount_naira.quantize(Decimal('1.'))
+        if currency == 'NGN'
+        else (amount_naira * rate).quantize(Decimal('0.01'))
+    )
+
+    is_ajax = (
+        request.headers.get('x-requested-with') == 'XMLHttpRequest'
+        or request.POST.get('ajax') == '1'
+    )
 
     # create an invoice for application fee (payer_user is null until account created)
     invoice = Invoice.objects.create(
@@ -43,10 +66,24 @@ def initialize_application_payment(request):
         status='UNPAID',
     )
 
+    if _use_fake_payment():
+        if is_ajax:
+            return JsonResponse({'status': 'ok', 'invoice_id': invoice.id, 'reference': f'FAKE-{invoice.id}'})
+        return redirect(f"{reverse('apply:apply_continue')}?invoice_id={invoice.id}&reference=FAKE-{invoice.id}")
+
     # Initialize Paystack
     secret_key = settings.PAYSTACK_SECRET_KEY
     if not secret_key:
         return HttpResponseServerError('Payment gateway is not configured. Please contact support.')
+
+    if is_ajax:
+        return JsonResponse({
+            'status': 'ok',
+            'invoice_id': invoice.id,
+            'amount': int(amount * Decimal('100')),
+            'currency': currency,
+            'public_key': settings.PAYSTACK_PUBLIC_KEY,
+        })
 
     payload = {
         'email': email,
@@ -74,7 +111,8 @@ def initialize_application_payment(request):
         return HttpResponseServerError('Invalid response from payment provider.')
 
     if resp.status_code != 200 or not data.get('status'):
-        return HttpResponseBadRequest('Unable to initialize payment. Please check your payment details and try again.')
+        error_message = data.get('message') or 'Unable to initialize payment. Please check your payment details and try again.'
+        return HttpResponseBadRequest(f'Paystack initialization failed: {error_message}')
 
     return redirect(data['data']['authorization_url'])
 
@@ -97,6 +135,19 @@ def apply_continue(request):
             invoice = Invoice.objects.get(id=invoice_id)
         except Invoice.DoesNotExist:
             invoice = None
+
+    if _use_fake_payment() and invoice_id:
+        if invoice:
+            invoice.status = 'PAID'
+            invoice.save(update_fields=['status'])
+
+        wait = WaitlistEntry.objects.create(
+            email=invoice.payer_email if invoice else '',
+            payment_reference=reference or f'FAKE-{invoice_id}',
+            invoice=invoice,
+            status='AWAITING_DETAILS',
+        )
+        return redirect(reverse('apply:apply_details', kwargs={'token': str(wait.temp_token)}))
 
     # verify with paystack using reference param if provided
     verify_url = f"{settings.PAYSTACK_API_BASE_URL}/transaction/verify/{reference}" if reference else None
@@ -168,5 +219,42 @@ def apply_details(request, token):
     wait.status = 'PENDING'
     wait.save()
 
-    # Render a confirmation page
     return render(request, 'apply/thankyou.html', {'wait': wait})
+
+
+@require_http_methods(['GET', 'POST'])
+def check_application(request, token=None):
+    context = {}
+    approval_code = token or request.POST.get('approval_code')
+    if approval_code:
+        try:
+            wait = WaitlistEntry.objects.get(temp_token=approval_code)
+        except WaitlistEntry.DoesNotExist:
+            context['error'] = 'We could not find an application with that code. Please verify and try again.'
+        else:
+            context['wait'] = wait
+            context['approval_code'] = str(wait.temp_token)
+            context['approved'] = wait.status in ('APPROVED', 'PROVISIONED')
+            context['rejected'] = wait.status == 'REJECTED'
+            context['pending'] = wait.status in ('PENDING', 'AWAITING_DETAILS')
+            context['expired'] = False
+            context['show_portal_details'] = False
+            if context['approved'] and wait.processed_at:
+                expires_at = wait.processed_at + timedelta(days=30)
+                context['expires_at'] = expires_at
+                if timezone.now() > expires_at:
+                    context['expired'] = True
+                else:
+                    context['show_portal_details'] = True
+            user = None
+            profile = None
+            student = None
+            if context.get('approved'):
+                user = User.objects.filter(email=wait.email).first()
+                if user:
+                    profile = getattr(user, 'profile', None)
+                    student = getattr(user, 'student_profile', None)
+            context['user'] = user
+            context['profile'] = profile
+            context['student'] = student
+    return render(request, 'apply/check.html', context)

@@ -41,15 +41,7 @@
             color: var(--ink-black);
             scroll-behavior: smooth;
             overflow-x: hidden;
-        }
-
-        /* ── CUSTOM DESKTOP CURSOR ── */
-        @media (pointer: fine) {
-            body { cursor: none; }
-            #global-cursor { position: fixed; z-index: 9999; pointer-events: none; width: 8px; height: 8px; border-radius: 50%; background: var(--burgundy); transform: translate(-50%,-50%); transition: width 0.15s, height 0.15s; }
-            #global-cursor-ring { position: fixed; z-index: 9998; pointer-events: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(107,39,55,0.4); transform: translate(-50%,-50%); transition: left 0.1s linear, top 0.1s linear, width 0.3s, height 0.3s; }
-            body:has(a:hover, button:hover, input:hover, select:hover) #global-cursor { width: 14px; height: 14px; }
-            body:has(a:hover, button:hover, input:hover, select:hover) #global-cursor-ring { width: 46px; height: 46px; border-color: rgba(107,39,55,0.7); }
+            cursor: auto;
         }
 
         /* ── RETHEMED LEGACY CLASSES (Keeps your app from breaking) ── */
@@ -141,10 +133,6 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col relative">
 
-    <!-- Global Custom Cursor Elements -->
-    <div id="global-cursor" class="hidden md:block"></div>
-    <div id="global-cursor-ring" class="hidden md:block"></div>
-
     <!-- Main Content Area -->
     <main class="flex-grow">
         {% block content %}
@@ -157,30 +145,6 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
-
-        // Global Custom Cursor Logic (Only active on non-touch devices)
-        (function() {
-            const isTouch = window.matchMedia("(pointer: coarse)").matches;
-            if (!isTouch) {
-                const cur = document.getElementById('global-cursor');
-                const ring = document.getElementById('global-cursor-ring');
-                let mx = 0, my = 0, rx = 0, ry = 0;
-                
-                document.addEventListener('mousemove', (e) => { 
-                    mx = e.clientX; 
-                    my = e.clientY; 
-                    if(cur) cur.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-                }, { passive: true });
-                
-                function lerp() {
-                    rx += (mx - rx) * 0.12; 
-                    ry += (my - ry) * 0.12; 
-                    if(ring) ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
-                    requestAnimationFrame(lerp);
-                }
-                lerp();
-            }
-        })();
     </script>
     
     {% block extra_scripts %}{% endblock %}

@@ -1400,3 +1400,230 @@ INFO 2026-06-02 18:39:41,872 autoreload 1868 14292 C:\Users\HP\Desktop\David Bed
 INFO 2026-06-02 18:39:44,815 autoreload 19024 15136 Watching for file changes with StatReloader
 INFO 2026-06-02 18:40:14,401 autoreload 19024 15136 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
 INFO 2026-06-02 18:40:17,654 autoreload 8672 16304 Watching for file changes with StatReloader
+INFO 2026-06-02 19:47:53,963 autoreload 8136 17604 Watching for file changes with StatReloader
+INFO 2026-06-02 19:51:30,154 autoreload 17000 11924 Watching for file changes with StatReloader
+INFO 2026-06-02 19:54:16,271 autoreload 11496 19136 Watching for file changes with StatReloader
+INFO 2026-06-02 20:02:33,430 autoreload 15920 11288 Watching for file changes with StatReloader
+WARNING 2026-06-02 20:02:46,207 log 15920 15236 Not Found: /favicon.ico
+WARNING 2026-06-02 20:04:27,065 log 15920 14128 Not Found: /favicon.ico
+WARNING 2026-06-02 20:05:03,165 log 15920 14128 Bad Request: /apply/pay/
+ERROR 2026-06-02 20:19:55,471 log 15920 19196 Internal Server Error: /apply/pay/
+INFO 2026-06-02 20:21:14,734 autoreload 8672 16304 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-02 20:21:14,792 autoreload 11496 19136 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-02 20:21:15,222 autoreload 15920 11288 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-02 20:21:16,054 autoreload 17000 11924 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-02 20:21:23,934 autoreload 8172 9952 Watching for file changes with StatReloader
+INFO 2026-06-02 20:21:23,936 autoreload 18360 13580 Watching for file changes with StatReloader
+INFO 2026-06-02 20:21:23,977 autoreload 6716 1500 Watching for file changes with StatReloader
+INFO 2026-06-02 20:21:28,448 autoreload 10492 16912 Watching for file changes with StatReloader
+INFO 2026-06-02 20:22:28,601 autoreload 6716 1500 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-02 20:22:29,230 autoreload 18360 13580 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-02 20:22:29,361 autoreload 10492 16912 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-02 20:22:29,415 autoreload 8172 9952 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-02 20:22:34,566 autoreload 5784 14404 Watching for file changes with StatReloader
+INFO 2026-06-02 20:22:34,597 autoreload 14908 17816 Watching for file changes with StatReloader
+INFO 2026-06-02 20:22:34,624 autoreload 18088 3404 Watching for file changes with StatReloader
+INFO 2026-06-02 20:22:35,601 autoreload 13848 14848 Watching for file changes with StatReloader
+ERROR 2026-06-02 20:22:45,206 log 18088 260 Internal Server Error: /apply/details/9cad4001-828c-415c-a819-c640ce8590ce/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\views\decorators\http.py", line 43, in inner
+    return func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py", line 166, in apply_details
+    return render(request, 'apply/details.html', {'wait': wait, 'schools': schools})
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: apply/details.html
+WARNING 2026-06-02 20:45:42,966 log 18088 10884 Not Found: /admin/core/waitlistentry/
+WARNING 2026-06-02 20:55:20,094 log 18088 16516 Not Found: /admin/core/waitlistentry/
+WARNING 2026-06-02 20:55:20,817 log 18088 16516 Not Found: /admin/core/waitlistentry/
+INFO 2026-06-03 15:48:38,340 autoreload 13492 12420 Watching for file changes with StatReloader
+WARNING 2026-06-03 15:49:21,761 log 13492 8364 Not Found: /favicon.ico
+WARNING 2026-06-03 15:52:28,546 log 13492 13008 Not Found: /admin/core/waitlist
+INFO 2026-06-03 15:53:53,435 autoreload 13492 12420 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-06-03 15:53:57,273 autoreload 14572 9576 Watching for file changes with StatReloader
+INFO 2026-06-03 15:54:07,873 autoreload 14572 9576 C:\Users\HP\Desktop\David Bedford\neural_village\core\admin.py changed, reloading.
+INFO 2026-06-03 15:54:09,739 autoreload 7056 11108 Watching for file changes with StatReloader
+WARNING 2026-06-03 15:55:22,054 log 7056 10536 Not Found: /admin/core/waitlist
+INFO 2026-06-05 08:16:48,199 autoreload 4032 3368 Watching for file changes with StatReloader
+WARNING 2026-06-05 08:17:47,240 log 4032 992 Not Found: /favicon.ico
+INFO 2026-06-05 08:28:02,863 autoreload 4032 3368 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-05 08:28:10,167 autoreload 4380 9572 Watching for file changes with StatReloader
+INFO 2026-06-05 08:32:55,590 autoreload 4380 9572 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-05 08:33:00,391 autoreload 1904 8780 Watching for file changes with StatReloader
+INFO 2026-06-05 08:40:02,546 autoreload 1904 8780 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_urls.py changed, reloading.
+INFO 2026-06-05 08:40:08,412 autoreload 2288 2540 Watching for file changes with StatReloader
+INFO 2026-06-05 08:45:51,163 autoreload 2288 2540 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_urls.py changed, reloading.
+INFO 2026-06-05 08:45:54,532 autoreload 14672 10516 Watching for file changes with StatReloader
+ERROR 2026-06-05 08:52:40,478 log 14672 10332 Internal Server Error: /apply/check/
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\views\decorators\http.py", line 43, in inner
+    return func(request, *args, **kwargs)
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py", line 231, in check_application
+    return render(request, 'apply/check.html', context)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 484, in parse
+    raise self.error(token, e)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\template\base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+    ...<2 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ' if wait.target_school else 'Not selected'' from 'wait.target_school.name if wait.target_school else 'Not selected''
+WARNING 2026-06-05 09:29:57,809 log 14672 9676 Bad Request: /apply/details/6101be08-2eb8-4032-802a-04ed84b95072/
+WARNING 2026-06-05 09:31:02,394 log 14672 9676 Bad Request: /apply/details/6101be08-2eb8-4032-802a-04ed84b95072/
+INFO 2026-06-05 23:49:46,802 autoreload 5272 8256 Watching for file changes with StatReloader
+INFO 2026-06-05 23:52:57,159 autoreload 16432 4716 Watching for file changes with StatReloader
+WARNING 2026-06-05 23:53:22,557 log 16432 14000 Not Found: /favicon.ico
+WARNING 2026-06-05 23:53:55,397 log 16432 14000 Bad Request: /apply/details/6101be08-2eb8-4032-802a-04ed84b95072/
+ERROR 2026-06-06 00:06:43,028 log 16432 6308 Internal Server Error: /admin/core/waitlistentry/905218e6-a679-4726-880b-21ff986e3404/change/
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1889, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1747, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1798, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1227, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 861, in save_base
+    pre_save.send(
+    ~~~~~~~~~~~~~^
+        sender=origin,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\AppData\Roaming\Python\Python313\site-packages\django\dispatch\dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\core\signals.py", line 80, in auto_provision_waitlist_user
+    _create_waitlist_portal_user(instance)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\HP\Desktop\David Bedford\neural_village\core\signals.py", line 57, in _create_waitlist_portal_user
+    entry.processed_at = timezone.now()
+                         ^^^^^^^^
+NameError: name 'timezone' is not defined
+WARNING 2026-06-06 00:13:32,072 log 16432 17492 Bad Request: /apply/details/a5c10d15-4b25-4708-9348-dc586021cae4/
+WARNING 2026-06-06 00:13:34,513 log 16432 17492 Bad Request: /apply/details/a5c10d15-4b25-4708-9348-dc586021cae4/
+INFO 2026-06-06 00:14:56,166 autoreload 16432 4716 C:\Users\HP\Desktop\David Bedford\neural_village\core\signals.py changed, reloading.
+INFO 2026-06-06 00:14:59,799 autoreload 17692 18028 Watching for file changes with StatReloader
+INFO 2026-06-06 00:17:56,936 autoreload 17692 18028 C:\Users\HP\Desktop\David Bedford\neural_village\core\signals.py changed, reloading.
+INFO 2026-06-06 00:18:01,985 autoreload 18100 15472 Watching for file changes with StatReloader
+INFO 2026-06-06 00:19:56,689 autoreload 18100 15472 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-06 00:20:04,929 autoreload 3616 18288 Watching for file changes with StatReloader
+INFO 2026-06-06 00:20:42,962 autoreload 3616 18288 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-06 00:20:44,981 autoreload 1292 2344 Watching for file changes with StatReloader
+WARNING 2026-06-06 00:23:40,326 log 1292 13776 Bad Request: /apply/details/93b87c5d-e15b-42b7-813d-444fbc1e62a0/
+WARNING 2026-06-06 00:24:19,997 log 1292 16572 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+ERROR 2026-06-06 00:24:32,291 log 1292 13776 Internal Server Error: /apply/pay/
+WARNING 2026-06-06 00:24:32,655 log 1292 16572 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-06-06 00:26:02,690 log 1292 16552 Bad Request: /apply/pay/
+INFO 2026-06-06 00:29:32,471 autoreload 1292 2344 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-06 00:29:36,400 autoreload 6988 12640 Watching for file changes with StatReloader
+INFO 2026-06-06 00:29:55,173 autoreload 6988 12640 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-06 00:29:57,715 autoreload 4480 13336 Watching for file changes with StatReloader
+WARNING 2026-06-06 00:30:02,591 log 4480 17344 Bad Request: /apply/pay/
+WARNING 2026-06-06 00:30:13,594 log 4480 17344 Bad Request: /apply/pay/
+WARNING 2026-06-06 00:32:17,012 log 4480 17344 Bad Request: /apply/pay/
+WARNING 2026-06-06 00:32:27,417 log 4480 17344 Bad Request: /apply/pay/
+WARNING 2026-06-06 00:32:54,123 log 4480 17344 Bad Request: /apply/pay/
+WARNING 2026-06-06 00:36:26,586 log 4480 17344 Bad Request: /apply/pay/
+WARNING 2026-06-06 00:37:20,496 log 4480 17344 Bad Request: /apply/pay/
+INFO 2026-06-06 00:43:24,929 autoreload 4480 13336 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-06 00:43:34,298 autoreload 12868 14916 Watching for file changes with StatReloader
+INFO 2026-06-06 00:44:47,768 autoreload 12868 14916 C:\Users\HP\Desktop\David Bedford\neural_village\api\apply_views.py changed, reloading.
+INFO 2026-06-06 00:44:51,157 autoreload 1396 18288 Watching for file changes with StatReloader

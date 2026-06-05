@@ -43,19 +43,7 @@ body {
   background: var(--parchment);
   color: var(--ink-black);
   overflow-x: hidden;
-  cursor: none; 
-}
-
-/* ── Custom Cursor (Desktop Only) ── */
-#cursor { position: fixed; z-index: 9999; pointer-events: none; width: 8px; height: 8px; border-radius: 50%; background: var(--burgundy); transform: translate(-50%,-50%); transition: width 0.15s, height 0.15s; will-change: transform, width, height; }
-#cursor-ring { position: fixed; z-index: 9998; pointer-events: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(107,39,55,0.4); transform: translate(-50%,-50%); transition: left 0.1s linear, top 0.1s linear, width 0.3s, height 0.3s; will-change: left, top; }
-body:has(a:hover) #cursor { width: 14px; height: 14px; }
-body:has(a:hover) #cursor-ring { width: 46px; height: 46px; border-color: rgba(107,39,55,0.7); }
-
-/* Disable cursor on touch devices to restore native behavior */
-@media (pointer: coarse) {
-  body { cursor: auto; }
-  #cursor, #cursor-ring { display: none !important; }
+  cursor: auto;
 }
 
 /* ── Progress Bar ── */
@@ -376,15 +364,6 @@ body:has(a:hover) #cursor-ring { width: 46px; height: 46px; border-color: rgba(1
 .scroll-cue span { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
 .scroll-line { width: 1px; height: 40px; background: linear-gradient(180deg, var(--ink-faint), transparent); animation: scpulse 2s ease-in-out infinite; }
 @keyframes scpulse { 0%,100% { opacity: 0.3; transform: scaleY(0.5); } 50% { opacity: 1; transform: scaleY(1); } }
-    /* Custom Desktop Cursor */
-    @media (pointer: fine) {
-        body { cursor: none; }
-        #cursor { position: fixed; z-index: 9999; pointer-events: none; width: 8px; height: 8px; border-radius: 50%; background: #6b2737; transform: translate(-50%,-50%); transition: width 0.15s, height 0.15s; }
-        #cursor-ring { position: fixed; z-index: 9998; pointer-events: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(107,39,55,0.4); transform: translate(-50%,-50%); transition: left 0.1s linear, top 0.1s linear, width 0.3s, height 0.3s; }
-        body:has(a:hover, button:hover, input:hover) #cursor { width: 14px; height: 14px; }
-        body:has(a:hover, button:hover, input:hover) #cursor-ring { width: 46px; height: 46px; border-color: rgba(107,39,55,0.7); }
-    }
-
     /* Django Form Field Targeting */
     .dbbsa-form label {
         display: block;
@@ -423,10 +402,6 @@ body:has(a:hover) #cursor-ring { width: 46px; height: 46px; border-color: rgba(1
         display: none; 
     }
 </style>
-
-<!-- Custom Cursor Elements -->
-<div id="cursor" class="hidden md:block"></div>
-<div id="cursor-ring" class="hidden md:block"></div>
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -559,27 +534,4 @@ body:has(a:hover) #cursor-ring { width: 46px; height: 46px; border-color: rgba(1
     </div>
 </div>
 
-<script>
-    // Cursor Script for Desktop
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (!isTouch) {
-        const cur = document.getElementById('cursor');
-        const ring = document.getElementById('cursor-ring');
-        let mx = 0, my = 0, rx = 0, ry = 0;
-        
-        document.addEventListener('mousemove', (e) => { 
-            mx = e.clientX; 
-            my = e.clientY; 
-            if(cur) cur.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-        }, { passive: true });
-        
-        function lerp() {
-            rx += (mx - rx) * 0.12; 
-            ry += (my - ry) * 0.12; 
-            if(ring) ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
-            requestAnimationFrame(lerp);
-        }
-        lerp();
-    }
-</script>
 {% endblock %}

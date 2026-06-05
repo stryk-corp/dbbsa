@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils import timezone
 import uuid
 
+from .signals import _ensure_allowed_domains, _normalize_role
 from .models import (
     School,
     Cohort,
@@ -190,17 +191,33 @@ class WaitlistEntryAdmin(admin.ModelAdmin):
             if entry.status in ('PROVISIONED', 'APPROVED'):
                 continue
             username = entry.email.split('@')[0]
-            user, created_flag = User.objects.get_or_create(username=username, defaults={'email': entry.email})
+            user, created_flag = User.objects.get_or_create(
+                username=username,
+                defaults={'email': entry.email}
+            )
             if created_flag:
                 user.set_password('dbbsa')
                 user.save()
+            elif user.email != entry.email:
+                user.email = entry.email
+                user.save(update_fields=['email'])
 
             # Create or update user profile
-            up, _ = User_Profile.objects.get_or_create(user=user, defaults={'role': (entry.role_requested or 'student'), 'digital_id': f'NV-{str(uuid.uuid4())[:8]}'})
+            role = _normalize_role(entry.role_requested)
+            up, _ = User_Profile.objects.get_or_create(
+                user=user,
+                defaults={
+                    'role': role,
+                    'digital_id': f'NV-{str(uuid.uuid4())[:8]}',
+                    'allowed_domains': _ensure_allowed_domains(role),
+                }
+            )
             if not created_flag:
-                up.role = (entry.role_requested or up.role)
+                up.role = role
                 if not up.digital_id:
                     up.digital_id = f'NV-{str(uuid.uuid4())[:8]}'
+                if not up.allowed_domains:
+                    up.allowed_domains = _ensure_allowed_domains(role)
                 up.save()
 
             entry.status = 'APPROVED'
@@ -218,11 +235,13 @@ class WaitlistEntryAdmin(admin.ModelAdmin):
 
         sent = 0
         for entry in queryset:
-            try:
-                username = entry.email.split('@')[0]
-                user = User.objects.get(username=username)
-            except Exception:
-                continue
+            user = User.objects.filter(email=entry.email).first()
+            if not user:
+                try:
+                    username = entry.email.split('@')[0]
+                    user = User.objects.get(username=username)
+                except User.DoesNotExist:
+                    continue
 
             subject = 'DBBSA — Your account credentials'
             message = (
@@ -373,4 +392,5 @@ admin.site.register(HardwareAsset, HardwareAssetAdmin)
 admin.site.register(Lab_Project, LabProjectAdmin)
 admin.site.register(Lab_Submission, LabSubmissionAdmin)
 admin.site.register(Invoice, InvoiceAdmin)
+admin.site.register(WaitlistEntry, WaitlistEntryAdmin)
 admin.site.register(TransactionWebhookLog, TransactionWebhookLogAdmin)

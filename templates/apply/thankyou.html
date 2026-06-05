@@ -1,15 +1,214 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Application Received — DBBSA</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Application Received — DBBSA</title>
+    
+    <!-- Tailwind CSS for layout utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Theme Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --parchment:    #f5f0e8;
+            --parchment-2:  #ede6d6;
+            --parchment-3:  #e2d9c5;
+            --parchment-4:  #d4c9b0;
+            --ink-black:    #1a1612;
+            --ink-deep:     #2a241e;
+            --ink-mid:      #4a4035;
+            --ink-muted:    #7a6e62;
+            --ink-faint:    #a89e92;
+            --burgundy:     #6b2737;
+            --burgundy-b:   #8b3347;
+            --burgundy-pale:#f2e4e7;
+            --forest:       #2d4a3e;
+            --forest-b:     #3d6653;
+            --forest-pale:  #e4eeea;
+            --gold:         #8b6914;
+            --gold-b:       #b08820;
+            --gold-pale:    #f7f0d8;
+            --slate-blue:   #2e3d5c;
+            --slate-pale:   #e4e9f2;
+            --rule:         rgba(26,22,18,0.12);
+            --rule-strong:  rgba(26,22,18,0.22);
+            --white:        #ffffff;
+        }
+
+        *,*::before,*::after { box-sizing: border-box; }
+        
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--parchment);
+            color: var(--ink-black);
+            overflow-x: hidden;
+            cursor: auto;
+        }
+
+        /* ── Typography & Components ── */
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-source { font-family: 'Source Serif 4', serif; }
+        .font-mono { font-family: 'IBM Plex Mono', monospace; }
+        .font-garamond { font-family: 'EB Garamond', serif; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: 2px;
+            background: var(--burgundy); color: var(--white);
+            font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 600;
+            text-decoration: none;
+            transition: background 0.15s, transform 0.1s;
+            box-shadow: 2px 3px 0 rgba(107,39,55,0.3);
+        }
+        .btn-primary:hover { 
+            background: var(--burgundy-b); 
+            transform: translate(-1px,-1px); 
+            box-shadow: 3px 4px 0 rgba(107,39,55,0.35); 
+        }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 2px;
+            border: 1px solid var(--rule-strong); color: var(--ink-mid);
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+            text-decoration: none; cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .btn-ghost:hover { 
+            background: var(--parchment-2); 
+            border-color: var(--ink-faint); 
+            color: var(--ink-black);
+        }
+
+        /* ── Layout Styles ── */
+        .bg-ruled {
+            background-image: repeating-linear-gradient(180deg, transparent, transparent 39px, rgba(26,22,18,0.06) 39px, rgba(26,22,18,0.06) 40px);
+        }
+
+        .document-card {
+            background: var(--parchment);
+            border: 1px solid var(--rule);
+            box-shadow: 12px 12px 0 var(--parchment-2);
+        }
+
+        .inline-figure { 
+            display: block; 
+            padding: 24px; 
+            background: var(--parchment-2); 
+            border-left: 3px solid var(--burgundy); 
+            border-radius: 0 2px 2px 0; 
+        }
+
+        @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-rise { opacity: 0; animation: rise 1s 0.1s forwards; }
+    </style>
 </head>
-<body class="p-6 bg-gray-50">
-  <main class="max-w-xl mx-auto bg-white p-6 rounded shadow">
-    <h1 class="text-2xl font-bold mb-4">Thank you</h1>
-    <p>We have received your application. An administrator will review and provision your account. You will receive login instructions by email when approved.</p>
-  </main>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-ruled">
+    
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <main class="w-full max-w-xl relative z-10 animate-rise">
+        
+        <!-- Decorative Top Branding -->
+        <div class="flex items-center gap-4 mb-8">
+            <div class="h-[1px] flex-1 bg-[var(--rule)]"></div>
+            <div class="font-garamond text-2xl italic text-[var(--ink-faint)] select-none">DBBSA</div>
+            <div class="h-[1px] flex-1 bg-[var(--rule)]"></div>
+        </div>
+
+        <!-- Main Document Card -->
+        <div class="document-card p-8 sm:p-12">
+            
+            <!-- Eyebrow Tag -->
+            <div class="font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--burgundy)] flex items-center gap-3 mb-6">
+                <span class="w-6 h-[1px] bg-[var(--burgundy)] block"></span>
+                Status Confirmation
+            </div>
+
+            <h1 class="font-playfair font-bold text-4xl sm:text-5xl text-[var(--ink-black)] leading-tight mb-6 tracking-tight">
+                Application<br>
+                <em class="font-normal text-[var(--burgundy)]">Received.</em>
+            </h1>
+
+            <p class="font-source text-[var(--ink-mid)] text-base sm:text-[17px] leading-[1.85] mb-8">
+                Thank you for submitting your application. Your unique approval code has been generated below. <strong class="text-[var(--ink-black)] font-semibold">Keep it safe</strong> — it is strictly required to verify your application status and claim your credentials.
+            </p>
+
+            <!-- Approval Code Box -->
+            <div class="inline-figure relative mb-8 group">
+                <p class="font-mono text-[10px] tracking-[0.1em] uppercase text-[var(--ink-muted)] mb-3">
+                    Exhibit A — Approval Code
+                </p>
+                <p id="token-text" class="font-mono text-2xl sm:text-3xl text-[var(--ink-black)] break-all select-all font-medium">
+                    {{ wait.temp_token }}
+                </p>
+                
+                <button id="copy-btn" onclick="copyToken()" class="btn-ghost absolute top-6 right-6 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity" aria-label="Copy code">
+                    Copy
+                </button>
+            </div>
+
+            <div class="border-t border-[var(--rule)] pt-6 mb-8">
+                <p class="font-source text-[14px] text-[var(--ink-muted)] italic leading-[1.75]">
+                    Once your application is approved, return to the status page and enter this code to view your portal login details, profile data, school, cohort, and approval expiry information.
+                </p>
+            </div>
+
+            <a href="{% url 'apply:check_application' %}" class="btn-primary w-full sm:w-auto">
+                Check application status →
+            </a>
+        </div>
+        
+    </main>
+
+    <script>
+        // Custom Cursor Logic
+        (function(){
+            const isTouch = window.matchMedia("(pointer: coarse)").matches;
+            if (!isTouch) {
+                const cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+                let mx = 0, my = 0, rx = 0, ry = 0;
+                
+                document.addEventListener('mousemove', function(e) { 
+                    mx = e.clientX; 
+                    my = e.clientY; 
+                    cur.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+                }, { passive: true });
+                
+                (function lerp(){
+                    rx += (mx - rx) * 0.12; 
+                    ry += (my - ry) * 0.12; 
+                    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+                    requestAnimationFrame(lerp);
+                })();
+            }
+        })();
+
+        // Copy to clipboard functionality
+        function copyToken() {
+            const tokenText = document.getElementById('token-text').innerText.trim();
+            const btn = document.getElementById('copy-btn');
+            
+            navigator.clipboard.writeText(tokenText).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = 'Copied!';
+                btn.style.borderColor = 'var(--forest-b)';
+                btn.style.color = 'var(--forest-b)';
+                
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                    btn.style.borderColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
