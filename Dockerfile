@@ -28,10 +28,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . .
 
+# Copy entrypoint and make it executable
+RUN chmod +x /app/entrypoint.sh || true
+
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Run migrations, ensure superuser exists, and start gunicorn
-CMD python manage.py migrate --noinput && \
-    python manage.py ensure_superuser && \
-    gunicorn neural_village.wsgi:application --bind 0.0.0.0:$PORT
+# Use entrypoint to handle migrations and startup reliably
+ENTRYPOINT ["/app/entrypoint.sh"]
