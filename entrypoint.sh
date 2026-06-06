@@ -36,7 +36,10 @@ until ( check_db && python manage.py migrate --noinput ); do
   sleep $SLEEP_SECONDS
 done
 
-echo "Migrations applied successfully. Ensuring superuser exists..."
+echo "Migrations applied successfully. Collecting static files..."
+python manage.py collectstatic --noinput
+
+echo "Ensuring superuser exists..."
 python manage.py ensure_superuser || true
 
 echo "Starting Gunicorn..."
