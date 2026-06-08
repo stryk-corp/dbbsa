@@ -5,35 +5,34 @@
 {% block content %}
 <style>
     :root {
-        --parchment:    #f5f0e8;
-        --parchment-2:  #ede6d6;
-        --parchment-3:  #e2d9c5;
-        --parchment-4:  #d4c9b0;
-        --ink-black:    #1a1612;
-        --ink-deep:     #2a241e;
-        --ink-mid:      #4a4035;
-        --ink-muted:    #7a6e62;
-        --ink-faint:    #a89e92;
-        --burgundy:     #6b2737;
-        --burgundy-b:   #8b3347;
-        --burgundy-pale:#f2e4e7;
-        --forest:       #2d4a3e;
-        --forest-b:     #3d6653;
-        --forest-pale:  #e4eeea;
-        --gold:         #8b6914;
-        --gold-b:       #b08820;
-        --gold-pale:    #f7f0d8;
-        --slate-blue:   #2e3d5c;
-        --slate-pale:   #e4e9f2;
-        --rule:         rgba(26,22,18,0.12);
-        --rule-strong:  rgba(26,22,18,0.22);
+        --sky:          #0EA5E9;
+        --sky-dk:       #0369A1;
+        --sky-lt:       #E0F2FE;
+        --sky-xl:       #F0F9FF;
+        --brand-bg:     #EFF8FF;
+        --ink-black:    #1E293B;
+        --ink-deep:     #334155;
+        --ink-mid:      #475569;
+        --ink-muted:    #64748B;
+        --ink-faint:    #94A3B8;
+        --gold:         #EAB308;
+        --gold-b:       #CA8A04;
+        --gold-pale:    #FEF9C3;
+        --forest:       #059669;
+        --forest-b:     #047857;
+        --forest-pale:  #D1FAE5;
+        --slate-blue:   #3B82F6;
+        --slate-pale:   #DBEAFE;
+        --rule:         rgba(14,165,233,0.12);
+        --rule-strong:  rgba(14,165,233,0.2);
         --white:        #ffffff;
     }
 
     .document-card {
-        background: var(--parchment);
-        border: 1px solid var(--rule);
-        box-shadow: 12px 12px 0 var(--parchment-2);
+        background: var(--white);
+        border: 1px solid var(--rule-strong);
+        box-shadow: 0 4px 12px rgba(14,165,233,0.15);
+        border-radius: 8px;
     }
 
     .form-input {
@@ -51,24 +50,24 @@
 
     .form-input:focus {
         outline: none;
-        border-color: var(--burgundy);
-        box-shadow: 0 0 0 3px var(--burgundy-pale);
+        border-color: var(--sky);
+        box-shadow: 0 0 0 3px var(--sky-lt);
     }
 
     .btn-primary {
         display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        padding: 15px 28px; border-radius: 2px;
-        background: var(--burgundy); color: var(--white);
+        padding: 15px 28px; border-radius: 8px;
+        background: var(--sky); color: var(--white);
         font-family: 'Source Serif 4', serif; font-size: 15px; font-weight: 600;
         text-decoration: none; border: none; cursor: pointer;
-        transition: background 0.15s, transform 0.1s;
-        box-shadow: 2px 3px 0 rgba(107,39,55,0.3);
+        transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+        box-shadow: 0 4px 12px rgba(14,165,233,0.3);
         width: 100%;
     }
     .btn-primary:hover { 
-        background: var(--burgundy-b); 
-        transform: translate(-1px,-1px); 
-        box-shadow: 3px 4px 0 rgba(107,39,55,0.35); 
+        background: var(--sky-dk); 
+        transform: translateY(-2px); 
+        box-shadow: 0 6px 20px rgba(14,165,233,0.4); 
     }
 
     .detail-label {
@@ -91,7 +90,7 @@
     .animate-rise { opacity: 0; animation: rise 0.8s 0.1s forwards; }
 </style>
 
-<div class="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[#fdfbf7]" style="background-image: repeating-linear-gradient(180deg, transparent, transparent 39px, rgba(26,22,18,0.06) 39px, rgba(26,22,18,0.06) 40px);">
+<div class="min-h-screen flex items-center justify-center p-4 sm:p-8" style="background: linear-gradient(180deg, #f0f9ff 0%, #eff8ff 50%, #ffffff 100%); background-image: repeating-linear-gradient(180deg, transparent, transparent 39px, rgba(14,165,233,0.03) 39px, rgba(14,165,233,0.03) 40px);">
     <main class="w-full max-w-3xl relative z-10 animate-rise py-8">
         
         <!-- Decorative Top Branding -->
@@ -105,14 +104,14 @@
         <div class="document-card p-6 sm:p-10 md:p-12">
             
             <!-- Eyebrow Tag -->
-            <div class="font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--burgundy)] flex items-center gap-3 mb-6">
-                <span class="w-6 h-[1px] bg-[var(--burgundy)] block"></span>
+            <div class="font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--sky)] flex items-center gap-3 mb-6">
+                <span class="w-6 h-[1px] bg-[var(--sky)] block"></span>
                 Official Records
             </div>
 
-            <h1 class="font-playfair font-bold text-3xl sm:text-4xl md:text-5xl text-[var(--ink-black)] leading-tight mb-8 tracking-tight border-b border-[var(--rule)] pb-6">
+            <h1 class="font-playfair font-bold text-3xl sm:text-4xl md:text-5xl text-[var(--ink-black)] leading-tight mb-8 tracking-tight border-b border-[var(--rule-strong)] pb-6">
                 Application<br>
-                <em class="font-normal text-[var(--burgundy)]">Status.</em>
+                <em class="font-normal text-[var(--sky)]">Status.</em>
             </h1>
 
             {% if error %}
@@ -141,7 +140,7 @@
             {% else %}
                 
                 <!-- Code Header -->
-                <div class="bg-[var(--parchment-2)] border border-[var(--rule)] p-4 sm:p-6 mb-8 text-center">
+                <div class="bg-[var(--sky-lt)] border border-[var(--rule-strong)] p-4 sm:p-6 mb-8 text-center">
                     <p class="detail-label">Queried Approval Code</p>
                     <p class="font-mono text-xl sm:text-2xl text-[var(--ink-black)] font-medium break-all tracking-wider">{{ approval_code }}</p>
                 </div>
@@ -192,11 +191,11 @@
                 {% endif %}
 
                 <!-- Detailed Information Grids -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 border-t border-[var(--rule)] pt-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 border-t border-[var(--rule-strong)] pt-8">
                     
                     <!-- Applicant Details -->
                     <div>
-                        <h3 class="font-playfair font-bold text-[var(--burgundy)] text-xl mb-4 italic">Applicant Details</h3>
+                        <h3 class="font-playfair font-bold text-[var(--sky)] text-xl mb-4 italic">Applicant Details</h3>
                         <div class="space-y-4">
                             <div>
                                 <p class="detail-label">Full Legal Name</p>
@@ -219,7 +218,7 @@
 
                     <!-- Institutional Details -->
                     <div>
-                        <h3 class="font-playfair font-bold text-[var(--burgundy)] text-xl mb-4 italic">Institutional Registry</h3>
+                        <h3 class="font-playfair font-bold text-[var(--sky)] text-xl mb-4 italic">Institutional Registry</h3>
                         <div class="space-y-4">
                             <div>
                                 <p class="detail-label">Partner School</p>
@@ -254,7 +253,7 @@
 
                             <div class="pt-2">
                                 <p class="detail-label">Application Status</p>
-                                <p class="inline-block px-3 py-1 bg-[var(--parchment-2)] border border-[var(--rule-strong)] rounded-sm text-sm font-semibold text-[var(--ink-black)] uppercase tracking-wide mt-1">
+                                <p class="inline-block px-3 py-1 bg-[var(--sky-lt)] border border-[var(--rule-strong)] rounded-md text-sm font-semibold text-[var(--ink-black)] uppercase tracking-wide mt-1">
                                     {{ wait.get_status_display }}
                                 </p>
                             </div>
@@ -270,7 +269,7 @@
                 </div>
 
                 {% if show_portal_details and expires_at %}
-                    <div class="mt-8 pt-6 border-t border-[var(--rule)] text-center">
+                    <div class="mt-8 pt-6 border-t border-[var(--rule-strong)] text-center">
                         <p class="font-source text-[12px] text-[var(--ink-muted)] italic">
                             Authorization document valid until {{ expires_at|date:'d M Y' }}.
                         </p>
@@ -282,7 +281,7 @@
         
         {% if wait and show_portal_details %}
         <div class="mt-6 text-center">
-             <a href="/" class="font-source text-sm font-bold text-[var(--burgundy)] hover:text-[var(--ink-black)] transition-colors underline decoration-[var(--rule-strong)] underline-offset-4 hover:decoration-[var(--ink-black)]">
+             <a href="/" class="font-source text-sm font-bold text-[var(--sky)] hover:text-[var(--ink-black)] transition-colors underline decoration-[var(--rule-strong)] underline-offset-4 hover:decoration-[var(--ink-black)]">
                  Proceed to Portal Login
              </a>
         </div>

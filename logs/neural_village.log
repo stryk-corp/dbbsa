@@ -1635,3 +1635,12 @@ INFO 2026-06-06 01:00:16,790 autoreload 2924 18356 C:\Users\HP\Desktop\David Bed
 INFO 2026-06-06 01:00:20,378 autoreload 16968 5452 Watching for file changes with StatReloader
 INFO 2026-06-06 01:02:06,475 autoreload 16968 5452 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
 INFO 2026-06-06 01:02:09,977 autoreload 12848 13196 Watching for file changes with StatReloader
+INFO 2026-06-06 10:08:57,387 autoreload 15144 15140 Watching for file changes with StatReloader
+WARNING 2026-06-06 10:11:05,702 log 15144 10400 Not Found: /favicon.ico
+INFO 2026-06-06 23:08:37,014 autoreload 14640 1220 Watching for file changes with StatReloader
+WARNING 2026-06-06 23:09:00,097 log 14640 11208 Not Found: /favicon.ico
+INFO 2026-06-08 08:28:15,703 autoreload 17556 17488 Watching for file changes with StatReloader
+WARNING 2026-06-08 08:28:23,732 log 17556 15552 Not Found: /favicon.ico
+WARNING 2026-06-08 08:31:31,531 log 17556 15552 Not Found: /favicon.ico
+WARNING 2026-06-08 08:41:20,153 log 17556 3356 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-06-08 08:45:21,778 log 17556 3356 Not Found: /.well-known/appspecific/com.chrome.devtools.json

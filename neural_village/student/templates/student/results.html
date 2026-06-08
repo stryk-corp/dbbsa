@@ -7,27 +7,27 @@
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg: #f5f4f1;
+    --bg: #f0f9ff;
     --surface: #ffffff;
-    --surface-raised: #fdfcfa;
-    --border: #e8e6e1;
-    --border-soft: #f0ede8;
-    --text-primary: #1a1917;
-    --text-secondary: #6b6864;
-    --text-tertiary: #a8a5a0;
-    --teal: #0d9488;
-    --teal-dark: #0f766e;
-    --teal-light: #f0fdfa;
-    --teal-mid: #99f6e4;
-    --amber: #d97706;
-    --amber-light: #fffbeb;
+    --surface-raised: #f8fbfe;
+    --border: #e0f2fe;
+    --border-soft: #e0f2fe;
+    --text-primary: #1E293B;
+    --text-secondary: #475569;
+    --text-tertiary: #64748B;
+    --brand: #0EA5E9;
+    --brand-dark: #0369A1;
+    --brand-light: #E0F2FE;
+    --brand-mid: #38bdf8;
+    --gold: #EAB308;
+    --gold-light: #FEF9C3;
     --rose: #e11d48;
     --rose-light: #fff1f2;
-    --green: #16a34a;
-    --green-light: #f0fdf4;
-    --green-mid: #86efac;
-    --sky: #0284c7;
-    --sky-light: #f0f9ff;
+    --green: #059669;
+    --green-light: #D1FAE5;
+    --green-mid: #6EE7B7;
+    --sky: #0EA5E9;
+    --sky-light: #E0F2FE;
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 18px;
@@ -39,7 +39,7 @@
 
   .pg-wrap {
     font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
+    background: linear-gradient(180deg, #f0f9ff 0%, #eff8ff 50%, #ffffff 100%);
     min-height: 100vh;
     padding: 24px 20px 48px;
     display: flex;
@@ -65,7 +65,7 @@
     content: '';
     position: absolute; right: -60px; top: -60px;
     width: 220px; height: 220px; border-radius: 50%;
-    background: var(--teal); opacity: 0.12; pointer-events: none;
+    background: var(--brand); opacity: 0.12; pointer-events: none;
   }
   .hero::after {
     content: '';
@@ -75,7 +75,7 @@
   }
   .hero-eyebrow {
     font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 8px;
+    text-transform: uppercase; color: var(--brand-mid); margin-bottom: 8px;
   }
   .hero h1 {
     font-size: 32px; font-weight: 600; color: #fff;
@@ -138,13 +138,13 @@
   .stat-card::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
-    height: 3px; background: var(--strip-color, var(--teal));
+    height: 3px; background: var(--strip-color, var(--brand));
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   }
   .stat-card.strip-green  { --strip-color: var(--green); }
-  .stat-card.strip-amber  { --strip-color: var(--amber); }
+  .stat-card.strip-amber  { --strip-color: var(--gold); }
   .stat-card.strip-rose   { --strip-color: var(--rose); }
-  .stat-card.strip-teal   { --strip-color: var(--teal); }
+  .stat-card.strip-teal   { --strip-color: var(--brand); }
   .stat-label {
     font-size: 11px; font-weight: 600; text-transform: uppercase;
     letter-spacing: 0.09em; color: var(--text-tertiary); margin-bottom: 10px;
@@ -168,7 +168,7 @@
     width: 38px; height: 38px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .icon-teal { background: var(--teal-light); color: var(--teal); }
+  .icon-teal { background: var(--brand-light); color: var(--brand); }
   .card-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
   .card-sub   { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
 
@@ -201,7 +201,7 @@
   .quiz-name { font-weight: 600; white-space: nowrap; }
   .module-code {
     font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
-    color: var(--teal); background: var(--teal-light);
+    color: var(--brand); background: var(--brand-light);
     padding: 2px 7px; border-radius: 5px; margin-right: 5px; display: inline-block;
   }
   .module-name { font-size: 13px; color: var(--text-secondary); }
@@ -271,11 +271,11 @@
   }
   .empty-icon {
     width: 64px; height: 64px; border-radius: 50%;
-    background: var(--teal-light); color: var(--teal);
+    background: var(--brand-light); color: var(--brand);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 18px;
-    box-shadow: 0 0 0 8px color-mix(in srgb, var(--teal) 6%, transparent);
-  }
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--brand) 6%, transparent);
+  }}
   .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
   .empty-state p  { font-size: 14px; color: var(--text-secondary); max-width: 380px; line-height: 1.6; }
 
