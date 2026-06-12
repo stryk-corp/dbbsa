@@ -1663,3 +1663,4 @@ Traceback (most recent call last):
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
 WARNING 2026-06-12 13:17:30,564 log 13664 17224 Bad Request: /apply/details/22f5512e-8697-4c78-bcf4-1c3e7739b1ee/
+WARNING 2026-06-12 13:27:45,819 log 17076 16620 Forbidden (CSRF token from POST incorrect.): /apply/check/
