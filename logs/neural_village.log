@@ -1644,3 +1644,22 @@ WARNING 2026-06-08 08:28:23,732 log 17556 15552 Not Found: /favicon.ico
 WARNING 2026-06-08 08:31:31,531 log 17556 15552 Not Found: /favicon.ico
 WARNING 2026-06-08 08:41:20,153 log 17556 3356 Not Found: /.well-known/appspecific/com.chrome.devtools.json
 WARNING 2026-06-08 08:45:21,778 log 17556 3356 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-06-12 12:56:47,131 autoreload 10328 9172 Watching for file changes with StatReloader
+WARNING 2026-06-12 12:57:13,524 log 10328 13856 Not Found: /favicon.ico
+WARNING 2026-06-12 12:58:57,238 log 10328 13856 Not Found: /Assets/1o3.jpeg
+WARNING 2026-06-12 13:03:07,399 log 10328 13856 Not Found: /Assets/1o3.jpeg
+WARNING 2026-06-12 13:04:57,379 log 10328 13856 Not Found: /Assets/1o3.jpeg
+INFO 2026-06-12 13:07:14,326 autoreload 10328 9172 C:\Users\HP\Desktop\David Bedford\neural_village\settings.py changed, reloading.
+INFO 2026-06-12 13:07:20,386 autoreload 17076 15772 Watching for file changes with StatReloader
+ERROR 2026-06-12 13:17:28,904 exception 13664 17224 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "c:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "c:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "c:\Users\HP\Desktop\David Bedford\.venv\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2026-06-12 13:17:30,564 log 13664 17224 Bad Request: /apply/details/22f5512e-8697-4c78-bcf4-1c3e7739b1ee/

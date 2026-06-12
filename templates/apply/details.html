@@ -20,25 +20,143 @@
         --white:        #ffffff;
     }
 
-    .document-card {
+    .details-page-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+        background-color: #fdfbf7;
+        background-image: repeating-linear-gradient(180deg, transparent, transparent 39px, rgba(26,22,18,0.06) 39px, rgba(26,22,18,0.06) 40px);
+    }
+
+    .details-main {
+        width: 100%;
+        max-width: 720px;
+        position: relative;
+        z-index: 10;
+        animation: rise 0.8s 0.1s forwards;
+        padding: 0;
+    }
+
+    .details-branding {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    .details-line {
+        flex: 1 1 0;
+        height: 1px;
+        background: var(--rule);
+    }
+
+    .details-logo {
+        font-family: 'EB Garamond', serif;
+        font-size: 24px;
+        font-style: italic;
+        color: var(--ink-faint);
+        user-select: none;
+    }
+
+    .eyebrow-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+    }
+
+    .eyebrow-tag span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--burgundy);
+    }
+
+    .details-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        line-height: 1.05;
+        margin-bottom: 16px;
+        color: var(--ink-black);
+    }
+
+    .details-heading-accent {
+        font-style: normal;
+        font-weight: 400;
+        color: var(--burgundy);
+    }
+
+    .details-copy-block {
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 24px;
+        margin-bottom: 32px;
+    }
+
+    .details-copy-text {
+        font-family: 'Source Serif 4', serif;
+        color: var(--ink-mid);
+        font-size: 1rem;
+        line-height: 1.85;
+        margin: 0;
+    }
+
+    .form-stack > * + * {
+        margin-top: 24px;
+    }
+
+    .form-group {
+        display: block;
+    }
+
+    .form-grid {
         background: var(--white);
         border: 1px solid var(--rule-strong);
         box-shadow: 0 4px 12px rgba(14,165,233,0.15);
-        border-radius: 8px;
+        border-radius: 16px;
+        padding: 32px;
+    }
+
+    .form-stack > * + * {
+        margin-top: 24px;
+    }
+
+    .form-group {
+        display: block;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+        .form-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
     }
 
     .form-label {
         display: block;
-        font-family: 'IBM Plex Mono', monospace; 
-        font-size: 11px; 
-        font-weight: 500; 
-        text-transform: uppercase; 
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
         letter-spacing: 0.1em;
         color: var(--ink-muted);
         margin-bottom: 8px;
     }
 
-    .form-input {
+    .form-input,
+    .form-select {
         width: 100%;
         padding: 14px 16px;
         font-family: 'Source Serif 4', serif;
@@ -46,12 +164,13 @@
         color: var(--ink-black);
         background: var(--white);
         border: 1px solid var(--rule-strong);
-        border-radius: 2px;
+        border-radius: 8px;
         transition: border-color 0.2s, box-shadow 0.2s;
         appearance: none;
     }
 
-    .form-input:focus {
+    .form-input:focus,
+    .form-select:focus {
         outline: none;
         border-color: var(--sky);
         box-shadow: 0 0 0 3px var(--sky-lt);
@@ -59,92 +178,101 @@
 
     .form-select {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-        background-position: right 12px center;
+        background-position: right 16px center;
         background-repeat: no-repeat;
         background-size: 16px;
-        padding-right: 40px;
+        padding-right: 44px;
     }
 
     .btn-primary {
-        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        padding: 15px 28px; border-radius: 8px;
-        background: var(--sky); color: var(--white);
-        font-family: 'Source Serif 4', serif; font-size: 15px; font-weight: 600;
-        text-decoration: none; border: none; cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 28px;
+        border-radius: 12px;
+        background: var(--sky);
+        color: var(--white);
+        font-family: 'Source Serif 4', serif;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
         transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
         box-shadow: 0 4px 12px rgba(14,165,233,0.3);
         width: 100%;
     }
-    .btn-primary:hover { 
-        background: var(--sky-dk); 
-        transform: translateY(-2px); 
-        box-shadow: 0 6px 20px rgba(14,165,233,0.4); 
-    } 
-        transform: translate(-1px,-1px); 
-        box-shadow: 3px 4px 0 rgba(107,39,55,0.35); 
+    .btn-primary:hover {
+        background: var(--sky-dk);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(14,165,233,0.4);
+    }
+
+    .details-heading {
+        margin-bottom: 16px;
+        line-height: 1.05;
     }
 
     @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-rise { opacity: 0; animation: rise 0.8s 0.1s forwards; }
 </style>
 
-<div class="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[#fdfbf7]" style="background-image: repeating-linear-gradient(180deg, transparent, transparent 39px, rgba(26,22,18,0.06) 39px, rgba(26,22,18,0.06) 40px);">
-    <main class="w-full max-w-2xl relative z-10 animate-rise py-8">
+<div class="details-page-wrapper">
+    <main class="details-main">
         
         <!-- Decorative Top Branding -->
-        <div class="flex items-center gap-4 mb-8">
-            <div class="h-[1px] flex-1 bg-[var(--rule)]"></div>
-            <div class="font-garamond text-2xl italic text-[var(--ink-faint)] select-none">DBBSA</div>
-            <div class="h-[1px] flex-1 bg-[var(--rule)]"></div>
+        <div class="details-branding">
+            <div class="details-line"></div>
+            <div class="details-logo">DBBSA</div>
+            <div class="details-line"></div>
         </div>
 
         <!-- Main Document Card -->
-        <div class="document-card p-6 sm:p-10 md:p-12">
+        <div class="document-card">
             
             <!-- Eyebrow Tag -->
-            <div class="font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--burgundy)] flex items-center gap-3 mb-6">
+            <div class="eyebrow-tag">
                 <span class="w-6 h-[1px] bg-[var(--burgundy)] block"></span>
                 Official Enrollment
             </div>
 
-            <h1 class="font-playfair font-bold text-3xl sm:text-4xl md:text-5xl text-[var(--ink-black)] leading-tight mb-4 tracking-tight">
+            <h1 class="details-heading">
                 Complete Your<br>
-                <em class="font-normal text-[var(--burgundy)]">Application.</em>
+                <em class="details-heading-accent">Application.</em>
             </h1>
 
-            <div class="border-b border-[var(--rule)] pb-6 mb-8">
-                <p class="font-source text-[var(--ink-mid)] text-base sm:text-[17px] leading-[1.85]">
+            <div class="details-copy-block">
+                <p class="details-copy-text">
                     Please provide the applicant details below to finish your official registration.
                 </p>
             </div>
 
-            <form method="post" class="space-y-6">
+            <form method="post" class="form-stack">
                 {% csrf_token %}
                 
                 <!-- Full Name -->
-                <div>
+                <div class="form-group">
                     <label class="form-label">Full Legal Name</label>
                     <input type="text" name="full_name" value="{{ wait.full_name }}" required placeholder="John Doe" class="form-input" />
                 </div>
 
                 <!-- 2-Column Grid for Phone and DOB -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
+                <div class="form-grid">
+                    <div class="form-group">
                         <label class="form-label">Phone Number</label>
                         <input type="text" name="phone" value="{{ wait.phone }}" required placeholder="+234..." class="form-input" />
                     </div>
 
-                    <div>
+                    <div class="form-group">
                         <label class="form-label">Date of Birth</label>
-                        <input type="date" name="dob" value="{{ wait.dob|date:'Y-m-d' }}" class="form-input text-[var(--ink-mid)]" />
+                        <input type="date" name="dob" value="{{ wait.dob|date:'Y-m-d' }}" class="form-input" />
                     </div>
                 </div>
 
                 <!-- Role -->
-                <div>
+                <div class="form-group">
                     <label class="form-label">Ecosystem Role</label>
-                    <div class="relative">
-                        <select name="role" class="form-input form-select">
+                    <select name="role" class="form-input form-select">
                             <option value="student" {% if wait.role_requested == 'student' %}selected{% endif %}>Student</option>
                             <option value="parent" {% if wait.role_requested == 'parent' %}selected{% endif %}>Parent</option>
                             <option value="guardian" {% if wait.role_requested == 'guardian' %}selected{% endif %}>Guardian</option>
@@ -153,10 +281,9 @@
                 </div>
 
                 <!-- School -->
-                <div>
+                <div class="form-group">
                     <label class="form-label">Partner School</label>
-                    <div class="relative">
-                        <select name="school_id" class="form-input form-select">
+                    <select name="school_id" class="form-input form-select">
                             <option value="">Select a school</option>
                             {% for school in schools %}
                                 <option value="{{ school.id }}" {% if wait.target_school and wait.target_school.id == school.id %}selected{% endif %}>
